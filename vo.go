@@ -48,3 +48,10 @@ type UserVO struct {
 
 	Users []*UserDTO `json:"users"`
 }
+
+// GroupVO ...
+type GroupVO struct {
+	BaseVO
+
+	Groups []*GroupDTO `json:"groups"`
+}

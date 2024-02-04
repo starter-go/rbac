@@ -14,9 +14,10 @@ type BaseDTO struct {
 	UpdatedAt lang.Time `json:"updated_at"`
 	DeletedAt lang.Time `json:"deleted_at"`
 
-	Owner   UserID `json:"owner"`
-	Creator UserID `json:"creator"`
-	Updater UserID `json:"updater"`
+	Group   GroupID `json:"group"`
+	Owner   UserID  `json:"owner"`
+	Creator UserID  `json:"creator"`
+	Updater UserID  `json:"updater"`
 }
 
 // BaseVO 是通用的基本 VO 结构

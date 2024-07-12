@@ -62,3 +62,10 @@ type SubjectVO struct {
 
 	Subject *SubjectDTO `json:"subject"`
 }
+
+// TokenVO ...
+type TokenVO struct {
+	BaseVO
+
+	Tokens []*TokenDTO `json:"tokens"`
+}

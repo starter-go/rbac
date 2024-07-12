@@ -8,6 +8,6 @@ type TokenDTO struct {
 
 	CurrentUser
 
-	Session lang.UUID `json:"session"` // 会话的 UUID
+	Session lang.UUID `json:"sessionid"` // 会话的 UUID
 
 }

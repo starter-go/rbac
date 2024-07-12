@@ -11,13 +11,15 @@ type SubjectDTO struct {
 
 	BaseDTO
 
-	NickName      string       `json:"nickname"`
-	Avatar        string       `json:"avatar"`
-	Roles         RoleNameList `json:"roles"`
-	Authenticated bool         `json:"authenticated"` // 是否已验证
+	// NickName      string       `json:"nickname"`
+	// Avatar        string       `json:"avatar"`
+	// Roles         RoleNameList `json:"roles"`
 
-	Token   *TokenDTO   `json:"token"`
-	Session *SessionDTO `json:"session"`
+	CurrentUser
+
+	Authenticated bool        `json:"authenticated"` // 是否已验证
+	Token         *TokenDTO   `json:"token"`
+	Session       *SessionDTO `json:"session"`
 }
 
 // SubjectService 是针对 SubjectDTO 的服务

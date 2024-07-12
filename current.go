@@ -8,8 +8,8 @@ type CurrentUser struct {
 	Nickname  string       `json:"nickname"`
 	Avatar    string       `json:"avatar"`
 	Roles     RoleNameList `json:"roles"`
-	CreatedAt lang.Time    `json:"created_at"`
-	ExpiredAt lang.Time    `json:"expired_at"`
+	StartedAt lang.Time    `json:"started_at"` // 生效时间
+	ExpiredAt lang.Time    `json:"expired_at"` // 过期时间
 
 	Properties map[string]string `json:"properties"`
 }

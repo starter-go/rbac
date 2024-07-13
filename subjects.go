@@ -10,19 +10,16 @@ type SubjectDTO struct {
 	ID SubjectID `json:"id"`
 
 	BaseDTO
-
-	// NickName      string       `json:"nickname"`
-	// Avatar        string       `json:"avatar"`
-	// Roles         RoleNameList `json:"roles"`
-
 	CurrentUser
 
-	Authenticated bool        `json:"authenticated"` // 是否已验证
-	Token         *TokenDTO   `json:"token"`
-	Session       *SessionDTO `json:"session"`
+	Authenticated bool `json:"authenticated"` // 是否已验证
+
+	Token   *TokenDTO   `json:"token"`
+	Session *SessionDTO `json:"session"`
 }
 
-// SubjectService 是针对 SubjectDTO 的服务
+// SubjectService 是针对 SubjectDTO 的服务;
+// 它提供对 Token & Session 的联合查询
 type SubjectService interface {
 	GetCurrent(c context.Context) (*SubjectDTO, error)
 }

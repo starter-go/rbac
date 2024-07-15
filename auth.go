@@ -27,17 +27,25 @@ const (
 type AuthDTO struct {
 	BaseDTO
 
-	Mechanism string      `json:"mechanism"`
-	Account   string      `json:"account"`
-	Secret    lang.Base64 `json:"secret"`
+	// 采用的验证机制
+	Mechanism string `json:"mechanism"`
 
-	// Action    string      `json:"action"` // 如果为空，表示这条信息仅用于认证
-	// User        *UserDTO    `json:"user"`         // 用户信息 (optional)
-	// Step        int         `json:"step"`         // 表示验证的步骤
-	// NewPassword lang.Base64 `json:"password"` // 新的密码（用于注册，设置，重设密码）
-	// Success     bool        `json:"success"`      // 是否完成并且成功
+	// 最终要执行的动作,
+	// 例如: login(登录), sign_up(注册), reset_password(重置密码), 等
+	Action string `json:"action"`
 
-	Parameters map[string]string `json:"parameters"` // 其它扩展属性
+	// 表示验证的步骤
+	Step string `json:"step"`
+
+	// 将要验证的账号,
+	// 它可能是 UserName | UserID | UserEmail | UserPhone | ...
+	Account string `json:"account"`
+
+	// 将要验证的机密内容, 例如：密码, 等...
+	Secret lang.Base64 `json:"secret"`
+
+	// 其它扩展属性
+	Parameters map[string]string `json:"parameters"`
 }
 
 // AuthService 是针对 AuthDTO 的服务

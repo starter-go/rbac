@@ -21,6 +21,13 @@ type AuthVO struct {
 	Auth []*AuthDTO `json:"auth"` // 用于验证的信息
 }
 
+// AvatarVO ...
+type AvatarVO struct {
+	BaseVO
+
+	Avatars []*AvatarDTO `json:"avatars"`
+}
+
 // PermissionVO ...
 type PermissionVO struct {
 	BaseVO

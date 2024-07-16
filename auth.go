@@ -23,6 +23,16 @@ const (
 	MechanismSMS      = "sms"
 )
 
+// 定义几个常用的验证步骤
+const (
+	StepInit     = "init"     // 初始化
+	StepPrepare  = "prepare"  // 准备
+	StepHelp     = "help"     // 获取帮助信息
+	StepSendCode = "sendcode" // 发送验证码
+	StepApply    = "apply"    // 应用
+	StepAuth     = "auth"     // 验证与授权
+)
+
 // AuthDTO 用于身份认证
 type AuthDTO struct {
 	BaseDTO

@@ -22,6 +22,7 @@ type UserDTO struct {
 	Avatar   string       `json:"avatar"`
 	Phone    string       `json:"phone"`
 	Email    string       `json:"email"`
+	Language string       `json:"language"`
 	Roles    RoleNameList `json:"roles"`
 	Enabled  bool         `json:"enabled"`
 }

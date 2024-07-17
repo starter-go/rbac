@@ -10,6 +10,7 @@ import (
 type CurrentUser struct {
 	User      UserID       `json:"user"`
 	Nickname  string       `json:"nickname"`
+	Language  string       `json:"language"` // 该用户的本地化语言，取值示例：("zh_cn")
 	Avatar    string       `json:"avatar"`
 	Roles     RoleNameList `json:"roles"`
 	StartedAt lang.Time    `json:"started_at"` // 生效时间

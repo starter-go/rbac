@@ -44,3 +44,22 @@ type PermissionCache interface {
 	Clear()
 	Find(c context.Context, want *PermissionDTO) (*PermissionDTO, error)
 }
+
+type PermissionChecker interface {
+	GetSubjectContext() *SubjectContext
+
+	// 添加用户具有的角色
+	AddRolesHad(roles ...RoleName) PermissionChecker
+
+	// 添加可接受访问的用户角色
+	AddRolesAccepted(roles ...RoleName) PermissionChecker
+
+	// 接受匿名者访问
+	AcceptAnonymous() PermissionChecker
+
+	// 检查目标对象的访问权限
+	CheckObject(o *BaseDTO) error
+
+	// 完成最终的检查
+	Check() error
+}

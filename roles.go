@@ -24,7 +24,7 @@ const (
 	RoleGuest  RoleName = "guest"  // 访客
 	RoleOwner  RoleName = "owner"  // 资源持有者
 	RoleRoot   RoleName = "root"   // 超级管理员
-	RoleUser   RoleName = "user"   // 普通用户
+	RoleUser   RoleName = "user"   // 普通用户 (已登录验证的)
 )
 
 // RoleDTO 表示 Role 的 REST 网络对象

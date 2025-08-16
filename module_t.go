@@ -5,3 +5,32 @@ const (
 	theModuleVersion = "v0.0.11"
 	theModuleRev     = 11
 )
+
+////////////////////////////////////////////////////////////////////////////////
+
+type ModuleInfo interface {
+	Name() string
+	Version() string
+	Revision() int
+}
+
+func GetModuleInfo() ModuleInfo {
+	return &theModuleInfo
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+var theModuleInfo innerModuleInfo
+
+type innerModuleInfo struct {
+}
+
+func (inst *innerModuleInfo) Name() string {
+	return theModuleName
+}
+func (inst *innerModuleInfo) Version() string {
+	return theModuleVersion
+}
+func (inst *innerModuleInfo) Revision() int {
+	return theModuleRev
+}

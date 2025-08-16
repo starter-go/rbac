@@ -8,9 +8,8 @@ import (
 type TokenDTO struct {
 	// BaseDTO
 
-	CurrentUser
-
-	Session SessionID `json:"sessionid"` // 会话的 UUID
+	SessionID   SessionID   `json:"session_id"`   // 会话的 ID
+	SessionUUID SessionUUID `json:"session_uuid"` // 会话的 UUID
 
 }
 

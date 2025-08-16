@@ -14,7 +14,7 @@ type BaseDTO struct {
 	UpdatedAt lang.Time `json:"updated_at"`
 	DeletedAt lang.Time `json:"deleted_at"`
 
-	Group   GroupID `json:"group"`
+	Group   GroupID `json:"group"` // 该对象的默认权限分组
 	Owner   UserID  `json:"owner"`
 	Creator UserID  `json:"creator"`
 	Updater UserID  `json:"updater"`

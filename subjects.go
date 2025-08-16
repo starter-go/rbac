@@ -20,17 +20,18 @@ type SubjectDTO struct {
 type SubjectContext struct {
 	Authenticated bool
 
-	// 当前用户具有的角色
-	HaveRoles []RoleName
-
-	// 当前操作可接受的角色
-	AcceptedRoles []RoleName
-
 	Token   *TokenDTO
 	Session *SessionDTO
 	Subject *SubjectDTO
 
 	Checker PermissionChecker
+	Service SubjectService
+
+	// 当前用户具有的角色
+	HaveRoles []RoleName
+
+	// 当前操作可接受的角色
+	AcceptedRoles []RoleName
 }
 
 // SubjectService 是针对 SubjectDTO 的服务;

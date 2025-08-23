@@ -58,6 +58,19 @@ type AuthDTO struct {
 	Parameters map[string]string `json:"parameters"`
 }
 
+// AuthResult 表示认证结果
+type AuthResult struct {
+
+	// 有效期:
+	Term
+
+	Mechanism  string `json:"mechanism"` // 采用的认证机制
+	UserID     UserID `json:"uid"`       // 被认证的用户ID
+	DomainName string `json:"domain"`    // 认证针对的域名
+	OK         string `json:"ok"`        // 是否认证成功
+
+}
+
 // AuthService 是针对 AuthDTO 的服务
 type AuthService interface {
 	Handle(c context.Context, action string, a []*AuthDTO) ([]*AuthDTO, error)

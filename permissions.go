@@ -46,7 +46,6 @@ type PermissionCache interface {
 }
 
 type PermissionChecker interface {
-	GetSubjectContext() *SubjectContext
 
 	// 添加用户具有的角色
 	AddRolesHad(roles ...RoleName) PermissionChecker

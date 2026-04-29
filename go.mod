@@ -12,7 +12,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/starter-go/afs v0.9.13 // indirect
-	github.com/starter-go/application v0.9.27 // indirect
+	github.com/starter-go/application v0.9.28 // direct
 	github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed // indirect
 	github.com/starter-go/vlog v0.9.12 // indirect
 	golang.org/x/sys v0.22.0 // indirect

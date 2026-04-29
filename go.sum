@@ -1,12 +1,14 @@
+github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
-github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/starter-go/afs v0.9.13 h1:yA6OdyM2Z300pm7hSm0UAxjNcDxyuRyOljgUYKyRsp8=
 github.com/starter-go/afs v0.9.13/go.mod h1:6hM71KrBrzlYST/axyH4rdhZ9Ig5ri12e1TAsG7FYAA=
 github.com/starter-go/application v0.9.27 h1:JXr3R9VkA2Z6ZU0wEdNGGdMkSLqzWt+jQoFiBMTTvaI=
 github.com/starter-go/application v0.9.27/go.mod h1:4wPAbJiqxHCEK7haXG6k923BLmopQoCDsH7vxlKrR1M=
+github.com/starter-go/application v0.9.28 h1:fQxnfXw8eNIbKaUSqBRWQpQLZsu8ICkNv/YMybAXSnM=
+github.com/starter-go/application v0.9.28/go.mod h1:8JvdNU24P35K9pXBy4ip+XJKGKpOkUA0t7SXjeviwTs=
 github.com/starter-go/base v0.9.11 h1:QG5kcShJSV9cs2KEeqZ8UN9icM/0uPZwPFrh0XUOf+Q=
 github.com/starter-go/base v0.9.11/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed h1:M2a7T859WdgePU0bZsTkXwH1kWWO+PG96MxBcboWrOU=

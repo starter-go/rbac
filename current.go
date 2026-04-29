@@ -1,6 +1,7 @@
 package rbac
 
 import (
+	"github.com/starter-go/application/properties"
 	"github.com/starter-go/rbac/localization"
 )
 
@@ -18,7 +19,7 @@ type CurrentUser struct {
 	Email    EmailAddress        `json:"email"`
 	Roles    RoleNameList        `json:"roles"`
 
-	Properties map[string]string `json:"properties"`
+	Properties properties.Map `json:"properties"`
 
 	AuthResults []*AuthResult `json:"auth_results"` // 主要用于 2FA
 }

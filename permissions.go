@@ -13,17 +13,20 @@ type PermissionDTO struct {
 
 	BaseDTO
 
-	Method      string       `json:"method"`
-	Path        string       `json:"path"`
-	AcceptRoles RoleNameList `json:"accept_roles"`
-	Enabled     bool         `json:"enabled"`
+	Enabled bool         `json:"enabled"`
+	Method  string       `json:"method"`
+	Path    string       `json:"path"`
+	Roles   RoleNameList `json:"roles"`
 }
 
 // PermissionQuery 查询参数
 type PermissionQuery struct {
-	Conditions Conditions
-	Pagination Pagination
+
+	// Conditions Conditions
+
 	All        bool // 查询全部条目
+	Pagination Pagination
+	Want       *PermissionDTO
 }
 
 // PermissionService 是针对 PermissionDTO 的服务

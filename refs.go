@@ -1,0 +1,19 @@
+package rbac
+
+type Entity = BaseEntity
+
+type DTO = BaseDTO
+
+type VO = BaseVO
+
+type DTORef interface {
+	GetTarget() *DTO
+}
+
+type VORef interface {
+	GetTarget() *VO
+}
+
+type EntityRef interface {
+	GetTarget() *Entity
+}

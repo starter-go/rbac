@@ -6,6 +6,8 @@ import (
 	"github.com/starter-go/base/lang"
 )
 
+////////////////////////////////////////////////////////////////////////////////
+
 // BaseDTO 是基本的 DTO
 type BaseDTO struct {
 	UUID lang.UUID `json:"uuid"`
@@ -20,6 +22,17 @@ type BaseDTO struct {
 	Updater UserID  `json:"updater"`
 }
 
+// GetTarget implements DTORef.
+func (inst *BaseDTO) GetTarget() *DTO {
+	return inst
+}
+
+func (inst *BaseDTO) _impl() DTORef {
+	return inst
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 // BaseVO 是通用的基本 VO 结构
 type BaseVO struct {
 	Status     int         `json:"status"`
@@ -29,3 +42,40 @@ type BaseVO struct {
 	Timestamp  lang.Time   `json:"timestamp"`
 	Pagination *Pagination `json:"pagination"`
 }
+
+// GetTarget implements VORef.
+func (inst *BaseVO) GetTarget() *VO {
+	return inst
+}
+
+func (inst *BaseVO) _impl() VORef {
+	return inst
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+type BaseEntity struct {
+	UUID lang.UUID `gorm:"unique"`
+
+	CreatedAt time.Time
+	UpdatedAt time.Time
+
+	// DeletedAt gorm.DeletedAt `gorm:"index"` // 这个字段需要在扩展结构中定义
+
+	Group   GroupID
+	Owner   UserID
+	Creator UserID
+	Updater UserID
+}
+
+// GetTarget implements EntityRef.
+func (inst *BaseEntity) GetTarget() *Entity {
+	return inst
+}
+
+func (inst *BaseEntity) _impl() EntityRef {
+	return inst
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF

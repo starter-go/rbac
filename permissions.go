@@ -2,18 +2,22 @@ package rbac
 
 import (
 	"context"
+
+	"github.com/starter-go/base/lang"
 )
 
 // PermissionDTO 表示 Permission 的 REST 网络对象
 type PermissionDTO struct {
 	ID PermissionID `json:"id"`
 
-	BaseDTO
+	DTO
 
-	Enabled bool         `json:"enabled"`
-	Method  string       `json:"method"`
-	Path    string       `json:"path"`
-	Roles   RoleNameList `json:"roles"`
+	Enabled  bool         `json:"enabled"`
+	Method   string       `json:"method"`
+	Path     string       `json:"path"`
+	Priority int          `json:"priority"`
+	Roles    RoleNameList `json:"roles"`
+	URI      lang.URI     `json:"uri"`
 }
 
 type PermissionEntity struct {
@@ -21,12 +25,13 @@ type PermissionEntity struct {
 
 	Entity
 
-	URI string `gorm:"unique"`
+	Enabled  bool
+	Method   string
+	Path     string
+	Priority int
+	Roles    RoleNameList
 
-	Enabled bool
-	Method  string
-	Path    string
-	Roles   RoleNameList
+	URI lang.URI `gorm:"unique"`
 }
 
 // PermissionQuery 查询参数

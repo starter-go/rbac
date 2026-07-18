@@ -31,7 +31,7 @@ func TestCopyBaseFields(t *testing.T) {
 	d1.Owner = 555
 	d1.Group = 6666
 	d1.CreatedAt = now
-	d1.UpdatedAt = now + 1
+	d1.UpdatedAt = 0
 	d1.UUID = lang.NewUUID(uuid)
 
 	err := CopyBaseFieldsD2E(d1, e1)

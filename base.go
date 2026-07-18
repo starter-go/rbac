@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/starter-go/base/lang"
+	"gorm.io/gorm"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +61,7 @@ type BaseEntity struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 
-	// DeletedAt gorm.DeletedAt `gorm:"index"` // 这个字段需要在扩展结构中定义
+	DeletedAt gorm.DeletedAt `gorm:"index"` // 这个字段需要在扩展结构中定义
 
 	Group   GroupID
 	Owner   UserID

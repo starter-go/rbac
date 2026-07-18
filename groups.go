@@ -3,43 +3,105 @@ package rbac
 import (
 	"context"
 	"strconv"
+
+	"gorm.io/gorm"
 )
 
-// GroupID 是通用的用户组标识符
-type GroupID int64
+////////////////////////////////////////////////////////////////////////////////
 
-// GroupName 表示用户分组名称
+type ResourceGroupID = GroupID
+
+type ResourceGroupName = GroupName
+
+type ResourceGroupDTO = GroupDTO
+
+type ResourceGroupEntity = GroupEntity
+
+type ResourceGroupService = GroupService
+
+type ResourceGroupDAO = GroupDAO
+
+type ResourceGroupQuery = GroupQuery
+
+////////////////////////////////////////////////////////////////////////////////
+
+// GroupName 表示资源分组名称
 type GroupName string
 
 // GroupDTO 表示 Group 的 REST 网络对象
 type GroupDTO struct {
 	ID GroupID `json:"id"`
 
-	BaseDTO
+	DTO
 
 	Name        GroupName `json:"name"`
 	Label       string    `json:"label"`
 	Description string    `json:"description"`
 
-	Roles   RoleNameList `json:"roles"`
-	Enabled bool         `json:"enabled"`
+	// Enabled bool `json:"enabled"`
+	// Roles   RoleNameList `json:"roles"`
+
+}
+
+type GroupEntity struct {
+	ID GroupID
+
+	Entity
+
+	Name        GroupName `gorm:"unique"`
+	Label       string
+	Description string
+
+	// Roles   RoleNameList
+	// Enabled bool
+
 }
 
 // GroupQuery 是 Group 的查询参数
 type GroupQuery struct {
-	Conditions Conditions
+	// Conditions Conditions
+
 	Pagination Pagination
 	All        bool // 查询全部条目
+	Want       *GroupEntity
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 // GroupService 是针对 GroupDTO 的服务
 type GroupService interface {
-	Insert(c context.Context, o *GroupDTO) (*GroupDTO, error)
-	Update(c context.Context, id GroupID, o *GroupDTO) (*GroupDTO, error)
-	Delete(c context.Context, id GroupID) error
+
+	//fetch
 
 	Find(c context.Context, id GroupID) (*GroupDTO, error)
-	List(c context.Context, q *GroupQuery) ([]*GroupDTO, error)
+
+	Query(c context.Context, q *GroupQuery) ([]*GroupDTO, error)
+
+	// edit
+
+	Insert(c context.Context, o *GroupDTO) (*GroupDTO, error)
+
+	Update(c context.Context, id GroupID, o *GroupDTO) (*GroupDTO, error)
+
+	Delete(c context.Context, id GroupID) error
+}
+
+// GroupDAO 是针对 GroupEntity 的 DAO
+type GroupDAO interface {
+
+	// fetch
+
+	Find(db *gorm.DB, id GroupID) (*GroupEntity, error)
+
+	Query(db *gorm.DB, q *GroupQuery) ([]*GroupEntity, error)
+
+	// edit
+
+	Insert(db *gorm.DB, item *GroupEntity) (*GroupEntity, error)
+
+	Update(db *gorm.DB, id GroupID, callback func(older *GroupEntity) error) (*GroupEntity, error)
+
+	Delete(db *gorm.DB, id GroupID) error
 }
 
 ////////////////////////////////////////////////////////////////////////////////

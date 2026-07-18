@@ -3,10 +3,9 @@ package rbac
 import (
 	"context"
 	"strconv"
-)
 
-// UserID 是通用的用户标识符
-type UserID int64
+	"github.com/starter-go/base/lang"
+)
 
 // UserName 表示用户名
 type UserName string
@@ -20,18 +19,39 @@ type UserDTO struct {
 	Name     UserName     `json:"name"`
 	NickName string       `json:"nickname"`
 	Avatar   string       `json:"avatar"`
-	Phone    string       `json:"phone"`
-	Email    string       `json:"email"`
+	Phone    PhoneNumber  `json:"phone"`
+	Email    EmailAddress `json:"email"`
 	Language string       `json:"language"`
 	Roles    RoleNameList `json:"roles"`
 	Enabled  bool         `json:"enabled"`
 }
 
+type UserEntity struct {
+	ID UserID
+
+	Entity
+
+	Name  UserName     `gorm:"unique"`
+	Phone PhoneNumber  `gorm:"unique"`
+	Email EmailAddress `gorm:"unique"`
+
+	NickName string
+	Avatar   string
+	Language string
+	Roles    RoleNameList
+	Enabled  bool
+	Locked   bool
+
+	Password lang.Hex
+	Salt     lang.Hex
+}
+
 // UserQuery 是 User 的查询参数
 type UserQuery struct {
-	Conditions Conditions
+	// Conditions Conditions
 	Pagination Pagination
 	All        bool // 查询全部条目
+	Want       *UserEntity
 }
 
 // UserService 是针对 UserDTO 的服务

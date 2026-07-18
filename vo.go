@@ -2,9 +2,13 @@ package rbac
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// VOGetter 是获取 BaseVO 的接口
+// [已废弃] 这个接口仅保留作为兼容性使用;
+// 应该使用 'VORef' 接口代替之;
+// VOGetter 是获取 BaseVO 的接口;
 type VOGetter interface {
 	GetVO() *BaseVO
+
+	// GetRef() VORef
 }
 
 // GetVO 实现 BaseGetter

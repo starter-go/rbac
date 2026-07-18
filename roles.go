@@ -6,9 +6,6 @@ import (
 	"strings"
 )
 
-// RoleID 是 Role 的实体 ID
-type RoleID int64
-
 // RoleName 是 Role 的正式名称
 type RoleName string
 
@@ -17,31 +14,46 @@ type RoleNameList string
 
 // 定义一些常用的角色
 const (
-	RoleAdmin  RoleName = "admin"  // 管理员
+	RoleAll RoleName = "all" // 任何人, all = any = [auth|anonym]
+	RoleAny RoleName = "any" // 任何人, any = all = [auth|anonym]
+
 	RoleAnonym RoleName = "anonym" // 匿名者
-	RoleAny    RoleName = "any"    // 任何人
-	RoleFriend RoleName = "friend" // 盆友
-	RoleGuest  RoleName = "guest"  // 访客
-	RoleOwner  RoleName = "owner"  // 资源持有者
-	RoleRoot   RoleName = "root"   // 超级管理员
-	RoleUser   RoleName = "user"   // 普通用户 (已登录验证的)
+	RoleAuth   RoleName = "auth"   // 已登录验证的用户, auth = [root|admin|manager|user]
+
+	RoleAdmin   RoleName = "admin"   // 系统管理员
+	RoleFriend  RoleName = "friend"  // 盆友
+	RoleGuest   RoleName = "guest"   // 访客
+	RoleManager RoleName = "manager" // 小组管理员
+	RoleOwner   RoleName = "owner"   // 资源持有者
+	RoleRoot    RoleName = "root"    // 超级管理员
+	RoleUser    RoleName = "user"    // 普通用户
 )
 
 // RoleDTO 表示 Role 的 REST 网络对象
 type RoleDTO struct {
 	ID RoleID `json:"id"`
 
-	BaseDTO
+	DTO
 
 	Name        RoleName `json:"name"`
 	Description string   `json:"description"`
 }
 
+type RoleEntity struct {
+	ID RoleID
+
+	Entity
+
+	Name        RoleName `gorm:"unique"`
+	Description string
+}
+
 // RoleQuery 查询参数
 type RoleQuery struct {
-	Conditions Conditions
+	// Conditions Conditions
 	Pagination Pagination
 	All        bool // 查询全部条目
+	Want       *RoleEntity
 }
 
 // RoleService 是针对 RoleDTO 的服务

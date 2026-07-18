@@ -6,9 +6,6 @@ import (
 	"strings"
 )
 
-// PhoneNumberID ...
-type PhoneNumberID int64
-
 // PhoneNumber 表示电话号码
 type PhoneNumber string
 
@@ -25,18 +22,30 @@ type PurePhoneNumber PhoneNumber
 type PhoneNumberDTO struct {
 	ID PhoneNumberID `json:"id"`
 
-	BaseDTO
+	DTO
 
 	RegionCode2  RegionPhoneCode   `json:"region"`
 	SimpleNumber SimplePhoneNumber `json:"simple_number"`
 	FullNumber   FullPhoneNumber   `json:"full_number"`
 }
 
+// PhoneNumberEntity ...
+type PhoneNumberEntity struct {
+	ID PhoneNumberID `json:"id"`
+
+	Entity
+
+	RegionCode2  RegionPhoneCode
+	SimpleNumber SimplePhoneNumber `gorm:"unique"`
+	FullNumber   FullPhoneNumber
+}
+
 // PhoneNumberQuery 查询参数
 type PhoneNumberQuery struct {
-	Conditions Conditions
+	// Conditions Conditions
 	Pagination Pagination
 	All        bool // 查询全部条目
+	Want       *PhoneNumberDTO
 }
 
 // PhoneNumberService ...

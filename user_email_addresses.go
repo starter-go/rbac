@@ -4,9 +4,6 @@ import (
 	"context"
 )
 
-// EmailAddressID ...
-type EmailAddressID int64
-
 // EmailAddress 表示 'user@domain' 形式的邮件地址
 type EmailAddress string
 

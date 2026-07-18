@@ -4,9 +4,6 @@ import (
 	"context"
 )
 
-// PermissionID 是 Permission 的实体 ID
-type PermissionID int64
-
 // PermissionDTO 表示 Permission 的 REST 网络对象
 type PermissionDTO struct {
 	ID PermissionID `json:"id"`
@@ -19,14 +16,24 @@ type PermissionDTO struct {
 	Roles   RoleNameList `json:"roles"`
 }
 
+type PermissionEntity struct {
+	ID PermissionID
+
+	Entity
+
+	URI string `gorm:"unique"`
+
+	Enabled bool
+	Method  string
+	Path    string
+	Roles   RoleNameList
+}
+
 // PermissionQuery 查询参数
 type PermissionQuery struct {
-
-	// Conditions Conditions
-
 	All        bool // 查询全部条目
 	Pagination Pagination
-	Want       *PermissionDTO
+	Want       *PermissionEntity
 }
 
 // PermissionService 是针对 PermissionDTO 的服务

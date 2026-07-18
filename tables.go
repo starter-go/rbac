@@ -3,6 +3,7 @@ package rbac
 import (
 	"context"
 
+	"github.com/starter-go/base/lang"
 	"gorm.io/gorm"
 )
 
@@ -15,7 +16,12 @@ type TableDTO struct {
 
 	DTO
 
-	Name        TableName
+	Name TableName `json:"name"` // the table-name
+
+	GroupName string
+	GroupURI  lang.URI
+	TableURI  lang.URI
+
 	Label       string
 	Description string
 }
@@ -25,7 +31,12 @@ type TableEntity struct {
 
 	Entity
 
-	Name        TableName `gorm:"unique"`
+	Name TableName `gorm:"unique"` // the table-name
+
+	GroupName string
+	GroupURI  lang.URI
+	TableURI  lang.URI
+
 	Label       string
 	Description string
 }

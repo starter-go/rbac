@@ -9,8 +9,8 @@ import (
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// BaseDTO 是基本的 DTO
-type BaseDTO struct {
+// DTO 是基本的 DTO
+type DTO struct {
 	UUID lang.UUID `json:"uuid"`
 
 	CreatedAt lang.Time `json:"created_at"`
@@ -34,8 +34,8 @@ func (inst *BaseDTO) _impl() DTORef {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// BaseVO 是通用的基本 VO 结构
-type BaseVO struct {
+// VO 是通用的基本 VO 结构
+type VO struct {
 	Status     int         `json:"status"`
 	Message    string      `json:"message"`
 	Error      string      `json:"error"`
@@ -55,7 +55,7 @@ func (inst *BaseVO) _impl() VORef {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type BaseEntity struct {
+type Entity struct {
 	UUID lang.UUID `gorm:"unique"`
 
 	CreatedAt time.Time
@@ -70,11 +70,11 @@ type BaseEntity struct {
 }
 
 // GetTarget implements EntityRef.
-func (inst *BaseEntity) GetTarget() *Entity {
+func (inst *Entity) GetTarget() *Entity {
 	return inst
 }
 
-func (inst *BaseEntity) _impl() EntityRef {
+func (inst *Entity) _impl() EntityRef {
 	return inst
 }
 

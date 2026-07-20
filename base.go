@@ -36,12 +36,13 @@ func (inst *BaseDTO) _impl() DTORef {
 
 // VO 是通用的基本 VO 结构
 type VO struct {
-	Status     int         `json:"status"`
-	Message    string      `json:"message"`
-	Error      string      `json:"error"`
-	Time       time.Time   `json:"time"`
-	Timestamp  lang.Time   `json:"timestamp"`
-	Pagination *Pagination `json:"pagination"`
+	Status     int               `json:"status"`
+	Message    string            `json:"message"`
+	Error      string            `json:"error"`
+	Time       time.Time         `json:"time"`
+	Timestamp  lang.Time         `json:"timestamp"`
+	Pagination *Pagination       `json:"pagination"`
+	Properties map[string]string `json:"properties"`
 }
 
 // GetTarget implements VORef.

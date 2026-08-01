@@ -47,13 +47,13 @@ type UserEntity struct {
 	Avatar   string
 	Language string
 	Roles    dxo.RoleNameList
-	Enabled  bool
-	Locked   bool
 
 	Password lang.Hex
-	Salt     lang.Hex
+	Salt     lang.Base64
 
-	Use2FA bool
+	Use2FA  bool
+	Enabled bool
+	Locked  bool
 }
 
 // User_DTO 表示 User 的 REST 网络对象

@@ -1,6 +1,7 @@
 package rbac
 
 import (
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac/lib/classes/authentications"
 	"github.com/starter-go/rbac/lib/classes/groups"
 	"github.com/starter-go/rbac/lib/classes/permissions"
@@ -67,6 +68,13 @@ type GroupEntity = groups.GroupEntity
 // page
 
 type Pagination = dxo.Pagination
+
+////////////////////////////////////////////////////////////////////////////////
+// locations
+
+type URI = lang.URI
+
+type URL = lang.URL
 
 ////////////////////////////////////////////////////////////////////////////////
 // permissions

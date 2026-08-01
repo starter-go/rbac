@@ -1,9 +1,13 @@
 package authentications
 
+// authentications 包含提供认证方案的 API
+
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac/lib/dxo"
 )
+
+////////////////////////////////////////////////////////////////////////////////
 
 type ID = dxo.AuthenticationID
 

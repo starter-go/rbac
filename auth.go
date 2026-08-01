@@ -4,34 +4,47 @@ import (
 	"context"
 
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac/lib/classes/authx"
 	"github.com/starter-go/rbac/lib/dxo"
 )
 
+////////////////////////////////////////////////////////////////////////////////
+
+type AuthAction = authx.Action
+
+type AuthMechanism = authx.Mechanism
+
+type AuthStep = authx.Step
+
+type AuthRegistry = authx.Registry
+
+////////////////////////////////////////////////////////////////////////////////
+
 // 定义几种常用的授权动作
 const (
-	ActionLogin          = "login"
-	ActionSignUp         = "sign-up"
-	ActionResetPassword  = "reset-password"
-	ActionChangePassword = "change-password"
-	ActionSendCode       = "send-code"
+	ActionLogin          AuthAction = "login"
+	ActionSignUp         AuthAction = "sign-up"
+	ActionResetPassword  AuthAction = "reset-password"
+	ActionChangePassword AuthAction = "change-password"
+	ActionSendCode       AuthAction = "send-code"
 )
 
 // 定义几种常用的验证机制
 const (
-	MechanismPassword = "password"
-	MechanismEmail    = "email"
-	MechanismPhone    = "sms"
-	MechanismSMS      = "sms"
+	MechanismPassword AuthMechanism = "password"
+	MechanismEmail    AuthMechanism = "email"
+	MechanismPhone    AuthMechanism = "sms"
+	MechanismSMS      AuthMechanism = "sms"
 )
 
 // 定义几个常用的验证步骤
 const (
-	StepInit     = "init"     // 初始化
-	StepPrepare  = "prepare"  // 准备
-	StepHelp     = "help"     // 获取帮助信息
-	StepSendCode = "sendcode" // 发送验证码
-	StepApply    = "apply"    // 应用
-	StepAuth     = "auth"     // 验证与授权
+	StepInit     AuthStep = "init"     // 初始化
+	StepPrepare  AuthStep = "prepare"  // 准备
+	StepHelp     AuthStep = "help"     // 获取帮助信息
+	StepSendCode AuthStep = "sendcode" // 发送验证码
+	StepApply    AuthStep = "apply"    // 应用
+	StepAuth     AuthStep = "auth"     // 验证与授权
 )
 
 // AuthDTO 用于身份认证

@@ -2,8 +2,8 @@ package rbac
 
 const (
 	theModuleName    = "github.com/starter-go/rbac"
-	theModuleVersion = "v0.10.6"
-	theModuleRev     = 23
+	theModuleVersion = "v0.10.7"
+	theModuleRev     = 24
 )
 
 ////////////////////////////////////////////////////////////////////////////////

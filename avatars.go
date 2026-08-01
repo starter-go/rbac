@@ -18,9 +18,11 @@ type AvatarDTO struct {
 
 // AvatarQuery ...
 type AvatarQuery struct {
-	Conditions Conditions
+	All bool // 查询全部条目
+
 	Pagination Pagination
-	All        bool // 查询全部条目
+
+	Want *AvatarDTO
 }
 
 // AvatarService ...

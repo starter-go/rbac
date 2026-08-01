@@ -1,22 +1,23 @@
-package rbac
-
-import "github.com/starter-go/rbac/lib/dxo"
+package dxo
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type DTO = dxo.DTO
-
-type VO = dxo.VO
-
-type Entity = dxo.Entity
+// type BaseEntity = Entity
+// type BaseDTO = DTO
+// type BaseVO = VO
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type BaseDTO = dxo.DTO
+type DTORef interface {
+	GetTarget() *DTO
+}
 
-type BaseVO = dxo.VO
+type VORef interface {
+	GetTarget() *VO
+}
 
-type BaseEntity = dxo.Entity
+type EntityRef interface {
+	GetTarget() *Entity
+}
 
 ////////////////////////////////////////////////////////////////////////////////
-// EOF

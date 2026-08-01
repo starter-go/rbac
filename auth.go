@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac/lib/dxo"
 )
 
 // 定义几种常用的授权动作
@@ -62,7 +63,7 @@ type AuthDTO struct {
 type AuthResult struct {
 
 	// 有效期:
-	Term
+	dxo.Term
 
 	Mechanism  string `json:"mechanism"` // 采用的认证机制
 	UserID     UserID `json:"uid"`       // 被认证的用户ID

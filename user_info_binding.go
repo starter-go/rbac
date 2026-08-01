@@ -8,11 +8,10 @@ import (
 const theUserInfoBindingKey = "rbac.UserInfoBinding#binding"
 
 // UserInfo 包含当前用户的基本信息
-type UserInfo struct {
-	// UserDTO
-
-	CurrentUser
-}
+// type UserInfo struct {
+// 	// UserDTO
+// 	CurrentUser
+// }
 
 // UserInfoBinding 负责把用户信息绑定到当前上下文
 type UserInfoBinding struct {

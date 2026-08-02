@@ -11,6 +11,8 @@ import (
 
 type ID = dxo.AuthenticationID
 
+type Pagination = dxo.Pagination
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // authentications.Entity 表示一个具体的认证方案实例

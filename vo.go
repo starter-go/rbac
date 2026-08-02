@@ -18,13 +18,6 @@ package rbac
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// AuthVO ...
-type AuthVO struct {
-	BaseVO
-
-	Auth []*AuthDTO `json:"auth"` // 用于验证的信息
-}
-
 // AvatarVO ...
 type AvatarVO struct {
 	BaseVO

@@ -4,6 +4,8 @@ import (
 	"github.com/starter-go/rbac/lib/dxo"
 )
 
+////////////////////////////////////////////////////////////////////////////////
+
 type GroupID = dxo.GroupID
 
 type GroupName = dxo.GroupName
@@ -15,6 +17,12 @@ type ID = GroupID
 type Name = GroupName
 
 type Pagination = dxo.Pagination
+
+type VO = GroupVO
+
+type DTO = GroupDTO
+
+type Entity = GroupEntity
 
 ////////////////////////////////////////////////////////////////////////////////
 

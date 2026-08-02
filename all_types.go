@@ -53,6 +53,10 @@ type AuthenticationID = authentications.ID
 
 type AuthenticationEntity = authentications.Entity
 
+type AuthenticationDAO = authentications.DAO
+
+type AuthenticationService = authentications.Service
+
 ////////////////////////////////////////////////////////////////////////////////
 // groups
 
@@ -63,6 +67,10 @@ type GroupVO = groups.GroupVO
 type GroupDTO = groups.GroupDTO
 
 type GroupEntity = groups.GroupEntity
+
+type GroupDAO = groups.DAO
+
+type GroupService = groups.Service
 
 ////////////////////////////////////////////////////////////////////////////////
 // page
@@ -112,9 +120,19 @@ type DTORef = dxo.DTORef
 type VORef = dxo.VORef
 
 ////////////////////////////////////////////////////////////////////////////////
-// reg
+// regions
 
 type RegionID = regions.ID
+
+type RegionDTO = regions.DTO
+
+type RegionVO = regions.VO
+
+type RegionEntity = regions.Entity
+
+type RegionDAO = regions.DAO
+
+type RegionService = regions.Service
 
 ////////////////////////////////////////////////////////////////////////////////
 // role
@@ -138,11 +156,15 @@ type RoleService = roles.Service
 ////////////////////////////////////////////////////////////////////////////////
 // session
 
-type SessionDTO = sessions.SessionDTO
+type SessionDTO = sessions.DTO
 
-type SessionVO = sessions.SessionEntity
+type SessionVO = sessions.VO
 
-type SessionEntity = sessions.SessionEntity
+type SessionEntity = sessions.Entity
+
+type SessionDAO = sessions.DAO
+
+type SessionService = sessions.SessionService
 
 ////////////////////////////////////////////////////////////////////////////////
 // tables
@@ -156,6 +178,10 @@ type TableDTO = tables.DTO
 type TableVO = tables.VO
 
 type TableEntity = tables.Entity
+
+type TableDAO = tables.DAO
+
+type TableService = tables.Service
 
 ////////////////////////////////////////////////////////////////////////////////
 // user
@@ -171,6 +197,10 @@ type UserDTO = users.UserDTO
 type UserEntity = users.UserEntity
 
 type UserInfo = dxo.UserInfo
+
+type UserDAO = users.DAO
+
+type UserService = users.Service
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

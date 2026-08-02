@@ -1,19 +1,11 @@
 package authx
 
+// Registration 是授权器和验证器和用的注册信息结构
 type Registration struct {
-	Enabled bool
-
-	Priority int
-
-	Action Action // for Authorizer
-
-	Mechanism Mechanism // for Authenticator
-
-	Authenticator Authenticator // optional
-
-	Authorizer Authorizer // optional
+	A1 *AuthenticatorRegistration // optional
+	A2 *AuthorizerRegistration    // optional
 }
 
 type Registry interface {
-	Registration() *Registration
+	ListRegistrations() []*Registration
 }

@@ -1,8 +1,7 @@
-package groups
+package regions
 
 import "gorm.io/gorm"
 
-// Group_DAO 是针对 GroupEntity 的 DAO
 type DAO interface {
 
 	// db

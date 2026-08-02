@@ -6,7 +6,7 @@ type DAO interface {
 
 	// db
 
-	GetDB(older *gorm.DB) *gorm.DB
+	GetDB(old *gorm.DB) *gorm.DB
 
 	// fetch
 
@@ -18,7 +18,7 @@ type DAO interface {
 
 	Insert(db *gorm.DB, item *TableEntity) (*TableEntity, error)
 
-	Update(db *gorm.DB, id TableID, callback func(item *TableEntity) error) (*TableEntity, error)
+	Update(db *gorm.DB, id TableID, callback func(old *TableEntity) error) (*TableEntity, error)
 
 	Delete(db *gorm.DB, id TableID) error
 }

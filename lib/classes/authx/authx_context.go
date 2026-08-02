@@ -3,24 +3,25 @@ package authx
 import (
 	"context"
 
-	"github.com/starter-go/rbac/lib/classes/authentications"
-	"github.com/starter-go/rbac/lib/classes/authorizations"
 	"github.com/starter-go/rbac/lib/dxo"
 )
-
-type Authentication = authentications.Authentication
-
-type Authorization = authorizations.Authorization
 
 type Context struct {
 	CC context.Context
 
 	Authentications []*Authentication
-	Authorizations  []*Authorization
 
-	User *dxo.UserInfo
+	Authorizations []*Authorization
+
+	UserInfo *dxo.UserInfo
 
 	Authenticated bool
 
+	Cancelled bool
+
 	Use2FA bool
+}
+
+func (inst *Context) Cancel() {
+	inst.Cancelled = true
 }

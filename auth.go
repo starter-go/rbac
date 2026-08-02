@@ -15,6 +15,10 @@ type AuthStep = authx.Step
 
 type AuthRegistry = authx.Registry
 
+type AuthDTO = authx.AuthDTO
+
+type AuthVO = authx.AuthVO
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // 定义几种常用的授权动作

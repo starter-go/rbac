@@ -1,5 +1,11 @@
 package rbac
 
+import (
+	"embed"
+
+	"github.com/starter-go/application"
+)
+
 const (
 	theModuleName    = "github.com/starter-go/rbac"
 	theModuleVersion = "v0.10.7"
@@ -8,29 +14,33 @@ const (
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type ModuleInfo interface {
-	Name() string
-	Version() string
-	Revision() int
-}
+const (
+	theMainModuleResPath = "src/main/resources"
+	theTestModuleResPath = "src/test/resources"
+)
 
-func GetModuleInfo() ModuleInfo {
-	return &theModuleInfo
-}
+//go:embed "src/main/resources"
+var theMainModuleResFS embed.FS
+
+//go:embed "src/test/resources"
+var theTestModuleResFS embed.FS
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var theModuleInfo innerModuleInfo
+func BuildModuleForLib() *application.ModuleBuilder {
 
-type innerModuleInfo struct {
+	mb := new(application.ModuleBuilder)
+	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#lib")
+	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
+
+	return mb
 }
 
-func (inst *innerModuleInfo) Name() string {
-	return theModuleName
-}
-func (inst *innerModuleInfo) Version() string {
-	return theModuleVersion
-}
-func (inst *innerModuleInfo) Revision() int {
-	return theModuleRev
+func BuildModuleForTest() *application.ModuleBuilder {
+
+	mb := new(application.ModuleBuilder)
+	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#test")
+	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
+
+	return mb
 }

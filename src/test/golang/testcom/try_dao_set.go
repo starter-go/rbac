@@ -7,12 +7,16 @@ import (
 	"github.com/starter-go/units"
 )
 
-type Example1 struct {
+type TryDaoSet struct {
 
 	//starter:component
 
-	AuthReg rbac.AuthRegistry
-	AuthSer rbac.AuthService
+	_as func(units.Unit) //starter:as(".")
+
+	DaoSetService rbac.DaoSetService //starter:inject("#")
+	AuthService   rbac.AuthService   //starter:inject("#")
+
+	// others
 
 	AuthenticationService rbac.AuthenticationService
 	GroupService          rbac.GroupService
@@ -34,23 +38,35 @@ type Example1 struct {
 }
 
 // ListRegistrations implements units.Unit.
-func (inst *Example1) ListRegistrations(list []*units.Registration) []*units.Registration {
+func (inst *TryDaoSet) ListRegistrations(list []*units.Registration) []*units.Registration {
 
-	u1 := &units.Registration{
-
-		Name:    "Example1",
-		Enabled: true,
-		Do:      inst.run,
+	u2 := &units.Registration{
+		Name:     "try-dao-set",
+		Enabled:  true,
+		Do:       inst.runTryDaoSet,
+		Priority: -11,
 	}
 
-	list = append(list, u1)
+	list = append(list, u2)
 	return list
 }
 
-func (inst *Example1) run(cc context.Context) error {
+func (inst *TryDaoSet) runTryDaoSet(cc context.Context) error {
+
+	var holder rbac.DaoSetHolder
+	ser := inst.DaoSetService
+	ds, err := holder.Get(ser)
+	if err != nil {
+		return err
+	}
+
+	role := new(rbac.RoleEntity)
+
+	ds.Roles.Insert(nil, role)
+
 	return nil
 }
 
-func (inst *Example1) _impl() units.Unit {
+func (inst *TryDaoSet) _impl() units.Unit {
 	return inst
 }

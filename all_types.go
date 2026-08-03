@@ -10,6 +10,7 @@ import (
 	"github.com/starter-go/rbac/lib/classes/roles"
 	"github.com/starter-go/rbac/lib/classes/sessions"
 	"github.com/starter-go/rbac/lib/classes/tables"
+	"github.com/starter-go/rbac/lib/classes/tokens"
 	"github.com/starter-go/rbac/lib/classes/users"
 	"github.com/starter-go/rbac/lib/dxo"
 )
@@ -199,6 +200,13 @@ type TableEntity = tables.Entity
 type TableDAO = tables.DAO
 
 type TableService = tables.Service
+
+////////////////////////////////////////////////////////////////////////////////
+// tokens
+
+type TokenDTO = tokens.DTO
+
+type TokenVO = tokens.VO
 
 ////////////////////////////////////////////////////////////////////////////////
 // user

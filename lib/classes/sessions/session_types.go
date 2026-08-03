@@ -42,13 +42,13 @@ type SessionEntity struct {
 type SessionDTO struct {
 	ID SessionID `json:"id"`
 
-	// BaseDTO
 	dxo.BaseDTO
-
-	// CurrentUser
 
 	Authenticated bool `json:"authenticated"` // 是否已验证
 
+	dxo.Term
+
+	dxo.UserInfo
 }
 
 type SessionVO struct {

@@ -24,7 +24,7 @@ type UserAtGroupID int64
 type UserInfo struct {
 
 	// 有效期
-	Term
+	// Term
 
 	UserID   UserID              `json:"uid"`
 	Username UserName            `json:"username"`

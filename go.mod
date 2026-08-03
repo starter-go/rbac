@@ -16,6 +16,6 @@ require (
 	github.com/starter-go/base v0.10.2
 	github.com/starter-go/configen v0.10.0 // indirect
 	github.com/starter-go/starter v0.10.0
-	github.com/starter-go/units v0.10.0 // indirect
-	github.com/starter-go/vlog v0.10.0 // indirect
+	github.com/starter-go/units v0.10.0 // direct
+	github.com/starter-go/vlog v0.10.0 // direct
 )

@@ -12,7 +12,20 @@ type SimplePhoneNumber = dxo.SimplePhoneNumber
 
 type RegionPhoneCode = dxo.RegionPhoneCode
 
+////////////////////////////////////////////////////////////////////////////////
+// short aliases
+
 type Pagination = dxo.Pagination
+
+type DTO = PhoneNumberDTO
+
+type VO = PhoneNumberVO
+
+type Entity = PhoneNumberEntity
+
+type ID = dxo.PhoneNumberID
+
+type Query = PhoneNumberQuery
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +49,12 @@ type PhoneNumberEntity struct {
 	RegionCode2  RegionPhoneCode
 	SimpleNumber SimplePhoneNumber `gorm:"unique"`
 	FullNumber   FullPhoneNumber
+}
+
+type PhoneNumberVO struct {
+	dxo.VO
+
+	Items []*PhoneNumberDTO `json:"phone_numbers"`
 }
 
 ////////////////////////////////////////////////////////////////////////////////

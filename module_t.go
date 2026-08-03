@@ -8,8 +8,8 @@ import (
 
 const (
 	theModuleName    = "github.com/starter-go/rbac"
-	theModuleVersion = "v0.10.8"
-	theModuleRev     = 25
+	theModuleVersion = "v0.10.9"
+	theModuleRev     = 26
 )
 
 ////////////////////////////////////////////////////////////////////////////////

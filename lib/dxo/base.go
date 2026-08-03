@@ -30,6 +30,8 @@ type DTO struct {
 type Entity struct {
 	UUID lang.UUID `gorm:"unique"`
 
+	Table TableID
+
 	CreatedAt time.Time
 	UpdatedAt time.Time
 

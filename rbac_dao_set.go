@@ -9,6 +9,8 @@ type DaoSet struct {
 
 	Sessions SessionDAO
 
+	Tables TableDAO
+
 	Users UserDAO
 }
 

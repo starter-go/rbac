@@ -4,39 +4,51 @@ import (
 	"context"
 
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/lib/classes/tables"
 	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )
 
-type TryDaoForAuthent struct {
+type TryDaoForTable struct {
 
 	//starter:component
 
 	_as func(units.Unit) //starter:as(".")
 
-	Dao rbac.AuthenticationDAO //starter:inject("#")
+	Dao rbac.TableDAO     //starter:inject("#")
+	Ser rbac.TableService //starter:inject("#")
 
 }
 
 // ListRegistrations implements units.Unit.
-func (inst *TryDaoForAuthent) ListRegistrations(list []*units.Registration) []*units.Registration {
+func (inst *TryDaoForTable) ListRegistrations(list []*units.Registration) []*units.Registration {
 
 	u1 := &units.Registration{
-		Name:     "try-authent-dao",
-		Enabled:  true,
-		Do:       inst.runTryAuthentDao,
-		Priority: 10,
+		Name:    "try-table-dao",
+		Enabled: true,
+		Do:      inst.runTryTableDao,
 	}
 
-	list = append(list, u1)
+	u2 := &units.Registration{
+		Name:    "try-table-service",
+		Enabled: true,
+		Do:      inst.runTryTableService,
+	}
+
+	list = append(list, u1, u2)
 	return list
 }
 
-func (inst *TryDaoForAuthent) runTryAuthentDao(cc context.Context) error {
+func (inst *TryDaoForTable) runTryTableService(cc context.Context) error {
+
+	return nil
+
+}
+
+func (inst *TryDaoForTable) runTryTableDao(cc context.Context) error {
 
 	dao := inst.Dao
-	it1 := new(rbac.AuthenticationEntity)
+	it1 := new(rbac.TableEntity)
 	db := dao.GetDB(nil)
 
 	it2, err := dao.Insert(db, it1)
@@ -51,9 +63,9 @@ func (inst *TryDaoForAuthent) runTryAuthentDao(cc context.Context) error {
 		return err
 	}
 
-	it4, err := dao.Update(db, id, func(old *authentications.Entity) error {
+	it4, err := dao.Update(db, id, func(old *tables.Entity) error {
 
-		old.CommonName = "foo"
+		old.Name = ""
 
 		return nil
 	})
@@ -79,6 +91,6 @@ func (inst *TryDaoForAuthent) runTryAuthentDao(cc context.Context) error {
 	return nil
 }
 
-func (inst *TryDaoForAuthent) _impl() units.Unit {
+func (inst *TryDaoForTable) _impl() units.Unit {
 	return inst
 }

@@ -7,4 +7,7 @@ type UserQuery struct {
 	Pagination Pagination
 
 	Want *UserEntity
+
+	Q string // the query.text
+	A []any  // the query.args
 }

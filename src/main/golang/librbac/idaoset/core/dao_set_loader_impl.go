@@ -92,6 +92,10 @@ func (inst *innerDSLoading) copyWithoutItemsNil(src, dst *rbac.DaoSet) {
 		dst.Sessions = src.Sessions
 	}
 
+	if src.Tables != nil {
+		dst.Tables = src.Tables
+	}
+
 	if src.Users != nil {
 		dst.Users = src.Users
 	}
@@ -107,6 +111,7 @@ func (inst *innerDSLoading) checkDS(ds *rbac.DaoSet) error {
 	all["perm_dao"] = ds.Permissions
 	all["role_dao"] = ds.Roles
 	all["session_dao"] = ds.Sessions
+	all["table_dao"] = ds.Tables
 	all["user_dao"] = ds.Users
 
 	for name, ptr := range all {

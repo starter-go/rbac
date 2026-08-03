@@ -225,6 +225,56 @@ func (inst*pad1f964415_testcom_TryDaoForSession) getDao(ie application.Injection
 
 
 
+// type pad1f96441.TryDaoForTable in package:github.com/starter-go/rbac/src/test/golang/testcom
+//
+// id:com-ad1f9644153d1e68-testcom-TryDaoForTable
+// class:class-0dc072ed44b3563882bff4e657a52e62-Unit
+// alias:
+// scope:singleton
+//
+type pad1f964415_testcom_TryDaoForTable struct {
+}
+
+func (inst* pad1f964415_testcom_TryDaoForTable) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-ad1f9644153d1e68-testcom-TryDaoForTable"
+	r.Classes = "class-0dc072ed44b3563882bff4e657a52e62-Unit"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pad1f964415_testcom_TryDaoForTable) new() any {
+    return &pad1f96441.TryDaoForTable{}
+}
+
+func (inst* pad1f964415_testcom_TryDaoForTable) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pad1f96441.TryDaoForTable)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+    com.Ser = inst.getSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*pad1f964415_testcom_TryDaoForTable) getDao(ie application.InjectionExt)p24287f458.TableDAO{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-TableDAO").(p24287f458.TableDAO)
+}
+
+
+func (inst*pad1f964415_testcom_TryDaoForTable) getSer(ie application.InjectionExt)p24287f458.TableService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-TableService").(p24287f458.TableService)
+}
+
+
+
 // type pad1f96441.TryDaoForUser in package:github.com/starter-go/rbac/src/test/golang/testcom
 //
 // id:com-ad1f9644153d1e68-testcom-TryDaoForUser
@@ -257,6 +307,7 @@ func (inst* pad1f964415_testcom_TryDaoForUser) inject(injext application.Injecti
 
 	
     com.UserDao = inst.getUserDao(ie)
+    com.UserSer = inst.getUserSer(ie)
 
 
     return nil
@@ -265,6 +316,11 @@ func (inst* pad1f964415_testcom_TryDaoForUser) inject(injext application.Injecti
 
 func (inst*pad1f964415_testcom_TryDaoForUser) getUserDao(ie application.InjectionExt)p24287f458.UserDAO{
     return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-UserDAO").(p24287f458.UserDAO)
+}
+
+
+func (inst*pad1f964415_testcom_TryDaoForUser) getUserSer(ie application.InjectionExt)p24287f458.UserService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-UserService").(p24287f458.UserService)
 }
 
 

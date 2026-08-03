@@ -1,8 +1,8 @@
-package regions
+package emailaddresses
 
 import "context"
 
-// Service ...
+// EmailAddress_Service ...
 type Service interface {
 
 	// edit

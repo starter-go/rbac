@@ -80,6 +80,8 @@ func (inst *MemoryUserDao) Query(db *gorm.DB, q *users.Query) ([]*users.Entity, 
 	page := &q.Pagination
 	results := make([]*users.Entity, 0)
 
+	ls.SetItem(model)
+
 	mq, err := DoQuery(ls, model)
 	if err != nil {
 		return nil, err

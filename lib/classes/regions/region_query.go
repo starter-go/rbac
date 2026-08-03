@@ -1,9 +1,14 @@
 package regions
 
+// regions.Query 查询参数
 type Query struct {
-	All bool
+	All bool // 查询全部条目
 
 	Pagination Pagination
 
 	Want *Entity
+
+	Q string // the query.text
+	A []any  // the query.args
+
 }

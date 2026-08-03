@@ -3,6 +3,7 @@ package users
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac/lib/dxo"
+	"github.com/starter-go/rbac/localization"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,12 @@ type Service = UserService
 
 type DAO = UserDAO
 
+type PhoneNumberID = dxo.PhoneNumberID
+
+type PhoneNumber = dxo.PhoneNumber
+
+type EmailAddress = dxo.EmailAddress
+
 ////////////////////////////////////////////////////////////////////////////////
 
 type UserEntity struct {
@@ -44,8 +51,8 @@ type UserEntity struct {
 	Email EmailAddress `gorm:"unique"`
 
 	NickName string
-	Avatar   string
-	Language string
+	Avatar   lang.URL
+	Language localization.Locale
 	Roles    dxo.RoleNameList
 
 	Password lang.Hex
@@ -62,14 +69,17 @@ type UserDTO struct {
 
 	dxo.BaseDTO
 
-	Name     Name             `json:"name"`
-	NickName string           `json:"nickname"`
-	Avatar   string           `json:"avatar"`
-	Phone    PhoneNumber      `json:"phone"`
-	Email    EmailAddress     `json:"email"`
-	Language string           `json:"language"`
-	Roles    dxo.RoleNameList `json:"roles"`
-	Enabled  bool             `json:"enabled"`
+	Name     Name                `json:"name"`
+	NickName string              `json:"nickname"`
+	Avatar   lang.URL            `json:"avatar"`
+	Phone    PhoneNumber         `json:"phone"`
+	Email    EmailAddress        `json:"email"`
+	Language localization.Locale `json:"language"`
+	Roles    dxo.RoleNameList    `json:"roles"`
+
+	Enabled bool `json:"enabled"`
+	Locked  bool `json:"locked"`
+	Use2FA  bool `json:"2fa"`
 }
 
 type UserVO struct {

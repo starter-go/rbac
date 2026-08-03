@@ -8,6 +8,9 @@ type UnsupportedDaoSetProvider struct {
 
 	_as func(rbac.DaoSetRegistry) //starter:as(".")
 
+	ConfigEnabled  bool //starter:inject("${rbac-dao-set.unsupported.enabled}")
+	ConfigPriority int  //starter:inject("${rbac-dao-set.unsupported.priority}")
+
 	AuthenDao  IAuthenticationDAO //starter:inject("#")
 	PermDao    IPermissionDAO     //starter:inject("#")
 	RoleDao    IRoleDAO           //starter:inject("#")
@@ -35,8 +38,8 @@ func (inst *UnsupportedDaoSetProvider) Provide(dst *rbac.DaoSet) *rbac.DaoSet {
 // Registration implements [rbac.DaoSetRegistry].
 func (inst *UnsupportedDaoSetProvider) Registration() *rbac.DaoSetRegistration {
 	return &rbac.DaoSetRegistration{
-		Priority: -99,
-		Enabled:  true,
+		Priority: inst.ConfigPriority,
+		Enabled:  inst.ConfigEnabled,
 		Label:    "Unsupported_Dao_Set_Provider",
 		Provider: inst,
 	}

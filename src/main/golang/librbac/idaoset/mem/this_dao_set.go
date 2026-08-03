@@ -8,10 +8,14 @@ type MemoryDaoSetProvider struct {
 
 	_as func(rbac.DaoSetRegistry) //starter:as(".")
 
+	ConfigEnabled  bool //starter:inject("${rbac-dao-set.ram.enabled}")
+	ConfigPriority int  //starter:inject("${rbac-dao-set.ram.priority}")
+
 	AuthenDao  IAuthenticationDAO //starter:inject("#")
 	PermDao    IPermissionDAO     //starter:inject("#")
 	RoleDao    IRoleDAO           //starter:inject("#")
 	SessionDao ISessionDAO        //starter:inject("#")
+	TableDao   ITableDAO          //starter:inject("#")
 	UserDao    IUserDao           //starter:inject("#")
 
 	Engine IMemoryEngine //starter:inject("#")
@@ -29,6 +33,7 @@ func (inst *MemoryDaoSetProvider) Provide(dst *rbac.DaoSet) *rbac.DaoSet {
 	dst.Permissions = inst.PermDao
 	dst.Roles = inst.RoleDao
 	dst.Sessions = inst.SessionDao
+	dst.Tables = inst.TableDao
 	dst.Users = inst.UserDao
 
 	return dst
@@ -43,11 +48,12 @@ func (inst *MemoryDaoSetProvider) Registration() *rbac.DaoSetRegistration {
 	eng.InitTable(new(rbac.PermissionEntity))
 	eng.InitTable(new(rbac.RoleEntity))
 	eng.InitTable(new(rbac.SessionEntity))
+	eng.InitTable(new(rbac.TableEntity))
 	eng.InitTable(new(rbac.UserEntity))
 
 	return &rbac.DaoSetRegistration{
-		Priority: 0,
-		Enabled:  true,
+		Priority: inst.ConfigPriority,
+		Enabled:  inst.ConfigEnabled,
 		Label:    "MemoryDaoSetProvider",
 		Provider: inst,
 	}

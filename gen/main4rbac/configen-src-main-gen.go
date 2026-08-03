@@ -6,6 +6,7 @@ import (
     p8b617a3f2 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/core"
     p9abb4d655 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem"
     p6051122a5 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported"
+    pde0f2595d "github.com/starter-go/rbac/src/main/golang/librbac/iservices"
      "github.com/starter-go/application"
 )
 
@@ -218,6 +219,50 @@ func (inst* pa89018078d_agent_SessionDaoAgent) inject(injext application.Injecti
 
 
 func (inst*pa89018078d_agent_SessionDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+}
+
+
+
+// type pa89018078.TableDaoAgent in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/agent
+//
+// id:com-a89018078de55056-agent-TableDaoAgent
+// class:
+// alias:alias-24287f4589fe5add27fb48a88d706565-TableDAO
+// scope:singleton
+//
+type pa89018078d_agent_TableDaoAgent struct {
+}
+
+func (inst* pa89018078d_agent_TableDaoAgent) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-a89018078de55056-agent-TableDaoAgent"
+	r.Classes = ""
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-TableDAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pa89018078d_agent_TableDaoAgent) new() any {
+    return &pa89018078.TableDaoAgent{}
+}
+
+func (inst* pa89018078d_agent_TableDaoAgent) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pa89018078.TableDaoAgent)
+	nop(ie, com)
+
+	
+    com.Serivce = inst.getSerivce(ie)
+
+
+    return nil
+}
+
+
+func (inst*pa89018078d_agent_TableDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
     return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
 }
 
@@ -537,6 +582,50 @@ func (inst*p9abb4d6558_mem_MemorySessionDao) getEngine(ie application.InjectionE
 
 
 
+// type p9abb4d655.MemoryTableDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
+//
+// id:com-9abb4d6558cb6ecb-mem-MemoryTableDao
+// class:
+// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO
+// scope:singleton
+//
+type p9abb4d6558_mem_MemoryTableDao struct {
+}
+
+func (inst* p9abb4d6558_mem_MemoryTableDao) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryTableDao"
+	r.Classes = ""
+	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p9abb4d6558_mem_MemoryTableDao) new() any {
+    return &p9abb4d655.MemoryTableDao{}
+}
+
+func (inst* p9abb4d6558_mem_MemoryTableDao) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p9abb4d655.MemoryTableDao)
+	nop(ie, com)
+
+	
+    com.Engine = inst.getEngine(ie)
+
+
+    return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryTableDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
+    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
+}
+
+
+
 // type p9abb4d655.MemoryUserDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryUserDao
@@ -650,15 +739,28 @@ func (inst* p9abb4d6558_mem_MemoryDaoSetProvider) inject(injext application.Inje
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
     com.AuthenDao = inst.getAuthenDao(ie)
     com.PermDao = inst.getPermDao(ie)
     com.RoleDao = inst.getRoleDao(ie)
     com.SessionDao = inst.getSessionDao(ie)
+    com.TableDao = inst.getTableDao(ie)
     com.UserDao = inst.getUserDao(ie)
     com.Engine = inst.getEngine(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-dao-set.ram.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-dao-set.ram.priority}")
 }
 
 
@@ -679,6 +781,11 @@ func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getRoleDao(ie application.Injec
 
 func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getSessionDao(ie application.InjectionExt)p9abb4d655.ISessionDAO{
     return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ISessionDAO").(p9abb4d655.ISessionDAO)
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getTableDao(ie application.InjectionExt)p9abb4d655.ITableDAO{
+    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO").(p9abb4d655.ITableDAO)
 }
 
 
@@ -724,6 +831,8 @@ func (inst* p6051122a59_unsupported_UnsupportedDaoSetProvider) inject(injext app
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
     com.AuthenDao = inst.getAuthenDao(ie)
     com.PermDao = inst.getPermDao(ie)
     com.RoleDao = inst.getRoleDao(ie)
@@ -732,6 +841,16 @@ func (inst* p6051122a59_unsupported_UnsupportedDaoSetProvider) inject(injext app
 
 
     return nil
+}
+
+
+func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-dao-set.unsupported.enabled}")
+}
+
+
+func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-dao-set.unsupported.priority}")
 }
 
 
@@ -947,6 +1066,150 @@ func (inst* p6051122a59_unsupported_UnsupportedUserDao) inject(injext applicatio
 
 
     return nil
+}
+
+
+
+// type pde0f2595d.CheckerServiceImpl in package:github.com/starter-go/rbac/src/main/golang/librbac/iservices
+//
+// id:com-de0f2595d5be336e-iservices-CheckerServiceImpl
+// class:
+// alias:alias-24287f4589fe5add27fb48a88d706565-CheckerService
+// scope:singleton
+//
+type pde0f2595d5_iservices_CheckerServiceImpl struct {
+}
+
+func (inst* pde0f2595d5_iservices_CheckerServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-de0f2595d5be336e-iservices-CheckerServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-CheckerService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pde0f2595d5_iservices_CheckerServiceImpl) new() any {
+    return &pde0f2595d.CheckerServiceImpl{}
+}
+
+func (inst* pde0f2595d5_iservices_CheckerServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pde0f2595d.CheckerServiceImpl)
+	nop(ie, com)
+
+	
+    com.RegList = inst.getRegList(ie)
+
+
+    return nil
+}
+
+
+func (inst*pde0f2595d5_iservices_CheckerServiceImpl) getRegList(ie application.InjectionExt)[]p24287f458.CheckerRegistry{
+    dst := make([]p24287f458.CheckerRegistry, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-CheckerRegistry")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.CheckerRegistry)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+
+// type pde0f2595d.TableServiceImpl in package:github.com/starter-go/rbac/src/main/golang/librbac/iservices
+//
+// id:com-de0f2595d5be336e-iservices-TableServiceImpl
+// class:
+// alias:alias-24287f4589fe5add27fb48a88d706565-TableService
+// scope:singleton
+//
+type pde0f2595d5_iservices_TableServiceImpl struct {
+}
+
+func (inst* pde0f2595d5_iservices_TableServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-de0f2595d5be336e-iservices-TableServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-TableService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pde0f2595d5_iservices_TableServiceImpl) new() any {
+    return &pde0f2595d.TableServiceImpl{}
+}
+
+func (inst* pde0f2595d5_iservices_TableServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pde0f2595d.TableServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*pde0f2595d5_iservices_TableServiceImpl) getDao(ie application.InjectionExt)p24287f458.TableDAO{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-TableDAO").(p24287f458.TableDAO)
+}
+
+
+
+// type pde0f2595d.UserServiceImpl in package:github.com/starter-go/rbac/src/main/golang/librbac/iservices
+//
+// id:com-de0f2595d5be336e-iservices-UserServiceImpl
+// class:
+// alias:alias-24287f4589fe5add27fb48a88d706565-UserService
+// scope:singleton
+//
+type pde0f2595d5_iservices_UserServiceImpl struct {
+}
+
+func (inst* pde0f2595d5_iservices_UserServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-de0f2595d5be336e-iservices-UserServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-UserService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pde0f2595d5_iservices_UserServiceImpl) new() any {
+    return &pde0f2595d.UserServiceImpl{}
+}
+
+func (inst* pde0f2595d5_iservices_UserServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pde0f2595d.UserServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+    com.CheckerSer = inst.getCheckerSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*pde0f2595d5_iservices_UserServiceImpl) getDao(ie application.InjectionExt)p24287f458.UserDAO{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-UserDAO").(p24287f458.UserDAO)
+}
+
+
+func (inst*pde0f2595d5_iservices_UserServiceImpl) getCheckerSer(ie application.InjectionExt)p24287f458.CheckerService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-CheckerService").(p24287f458.CheckerService)
 }
 
 

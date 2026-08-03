@@ -22,6 +22,10 @@ type ISessionDAO interface {
 	rbac.SessionDAO
 }
 
+type ITableDAO interface {
+	rbac.TableDAO
+}
+
 type IUserDao interface {
 	rbac.UserDAO
 }

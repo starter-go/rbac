@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strconv"
 	"sync"
 	"time"
@@ -52,13 +53,155 @@ func (inst *MemoryQuery[T]) Then(fn func(item T)) *MemoryQuery[T] {
 
 func (inst *MemoryQuery[T]) Query(page *dxo.Pagination) error {
 
-	if page == nil {
-		page = new(dxo.Pagination)
+	builder := new(innerQueryResultBuilder[T])
+	builder.init(inst)
+	table := inst.table
+
+	ids := table.listIds()
+
+	for _, id := range ids {
+		row := table.getRow(id)
+		builder.addRow(row)
 	}
 
-	// todo ...
+	builder.sort()
+	builder.applyPage(page)
+
+	return builder.complete()
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+type innerQueryResultBuilder[T any] struct {
+	mq   *MemoryQuery[T]
+	rows []*innerRow
+}
+
+func (inst *innerQueryResultBuilder[T]) init(mq *MemoryQuery[T]) {
+
+	if mq.handlerNewItem == nil {
+		mq.handlerNewItem = inst.theDefaultNew
+	}
+	if mq.handlerThen == nil {
+		mq.handlerThen = inst.theDefaultThen
+	}
+	if mq.handlerWhere == nil {
+		mq.handlerWhere = inst.theDefaultWhere
+	}
+
+	inst.mq = mq
+	inst.rows = make([]*innerRow, 0)
+}
+
+func (inst *innerQueryResultBuilder[T]) theDefaultNew() T {
+	var x T
+	return x
+}
+
+func (inst *innerQueryResultBuilder[T]) theDefaultThen(item T) {
+	// nop
+}
+
+func (inst *innerQueryResultBuilder[T]) theDefaultWhere(item T) bool {
+	return true
+}
+
+// Len implements [sort.Interface].
+func (inst *innerQueryResultBuilder[T]) Len() int {
+	return len(inst.rows)
+}
+
+// Less implements [sort.Interface].
+func (inst *innerQueryResultBuilder[T]) Less(i1, i2 int) bool {
+	n1 := inst.rows[i1].index
+	n2 := inst.rows[i2].index
+	return (n1 < n2)
+}
+
+// Swap implements [sort.Interface].
+func (inst *innerQueryResultBuilder[T]) Swap(i1, i2 int) {
+	l := inst.rows
+	l[i1], l[i2] = l[i2], l[i1]
+}
+
+func (inst *innerQueryResultBuilder[T]) computeIndex(row *innerRow) int {
+	const (
+		base    = 10
+		bitsize = 60
+	)
+	id := row.id
+	str := string(id)
+	n, err := strconv.ParseInt(str, base, bitsize)
+	if err != nil {
+		return row.index
+	}
+	return int(n)
+}
+
+func (inst *innerQueryResultBuilder[T]) addRow(row *innerRow) {
+
+	if row == nil {
+		return
+	}
+
+	if row.id == "" {
+		return
+	}
+
+	if len(row.body) == 0 {
+		return
+	}
+
+	row.index = inst.computeIndex(row)
+
+	inst.rows = append(inst.rows, row)
+}
+
+func (inst *innerQueryResultBuilder[T]) complete() error {
+
+	all := inst.rows
+	ni := inst.mq.handlerNewItem
+	then := inst.mq.handlerThen
+
+	for _, row := range all {
+		item := ni()
+		err := row.decode(item)
+		if err != nil {
+			return err
+		}
+		then(item)
+	}
 
 	return nil
+}
+
+func (inst *innerQueryResultBuilder[T]) applyPage(page *rbac.Pagination) {
+
+	if page == nil {
+		page = new(dxo.Pagination)
+		page.Limit = 5
+		page.Offset = 0
+	}
+
+	i1 := page.Offset
+	i2 := i1 + int64(page.Limit)
+	src := inst.rows
+	dst := make([]*innerRow, 0)
+	count := len(src)
+
+	for i := i1; i < i2; i++ {
+		if (0 <= i) && (i < int64(count)) {
+			item := src[i]
+			dst = append(dst, item)
+		}
+	}
+
+	page.Total = int64(count)
+	inst.rows = dst
+}
+
+func (inst *innerQueryResultBuilder[T]) sort() {
+	sort.Sort(inst)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -172,6 +315,19 @@ type innerTable struct {
 func (inst *innerTable) init() error {
 	inst.rows = make(map[innerRowID]*innerRow)
 	return nil
+}
+
+func (inst *innerTable) listIds() []innerRowID {
+	src := inst.rows
+	list := make([]innerRowID, 0)
+	for id := range src {
+		list = append(list, id)
+	}
+	return list
+}
+
+func (inst *innerTable) getRow(id innerRowID) *innerRow {
+	return inst.rows[id]
 }
 
 func (inst *innerTable) nextIntID() int64 {

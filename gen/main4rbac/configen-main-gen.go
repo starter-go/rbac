@@ -45,12 +45,17 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p9abb4d6558_mem_MemoryPermissionDao{})
     inst.register(&p9abb4d6558_mem_MemoryRoleDao{})
     inst.register(&p9abb4d6558_mem_MemorySessionDao{})
+    inst.register(&p9abb4d6558_mem_MemoryTableDao{})
     inst.register(&p9abb4d6558_mem_MemoryUserDao{})
     inst.register(&pa89018078d_agent_AuthentDaoAgent{})
     inst.register(&pa89018078d_agent_PermissionDaoAgent{})
     inst.register(&pa89018078d_agent_RoleDaoAgent{})
     inst.register(&pa89018078d_agent_SessionDaoAgent{})
+    inst.register(&pa89018078d_agent_TableDaoAgent{})
     inst.register(&pa89018078d_agent_UserDaoAgent{})
+    inst.register(&pde0f2595d5_iservices_CheckerServiceImpl{})
+    inst.register(&pde0f2595d5_iservices_TableServiceImpl{})
+    inst.register(&pde0f2595d5_iservices_UserServiceImpl{})
 
 
     return nil

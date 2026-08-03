@@ -23,6 +23,10 @@ type AvatarQuery struct {
 	Pagination Pagination
 
 	Want *AvatarDTO
+
+	Q string // the query.text
+	A []any  // the query.args
+
 }
 
 // AvatarService ...

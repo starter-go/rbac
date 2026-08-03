@@ -6,4 +6,8 @@ type TableQuery struct {
 	Pagination Pagination
 
 	Want *TableEntity
+
+	Q string // the query.text
+	A []any  // the query.args
+
 }

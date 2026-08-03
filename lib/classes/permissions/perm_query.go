@@ -7,4 +7,8 @@ type Query struct {
 	Pagination Pagination
 
 	Want *Entity
+
+	Q string // the query.text
+	A []any  // the query.args
+
 }

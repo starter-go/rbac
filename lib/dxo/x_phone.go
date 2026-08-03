@@ -1,7 +1,6 @@
 package dxo
 
 import (
-	"context"
 	"fmt"
 	"strings"
 )
@@ -20,47 +19,6 @@ type PurePhoneNumber PhoneNumber
 
 // PhoneNumberID ...
 type PhoneNumberID int64
-
-////////////////////////////////////////////////////////////////////////////////
-
-// PhoneNumberDTO ...
-type PhoneNumberDTO struct {
-	ID PhoneNumberID `json:"id"`
-
-	DTO
-
-	RegionCode2  RegionPhoneCode   `json:"region"`
-	SimpleNumber SimplePhoneNumber `json:"simple_number"`
-	FullNumber   FullPhoneNumber   `json:"full_number"`
-}
-
-// PhoneNumberEntity ...
-type PhoneNumberEntity struct {
-	ID PhoneNumberID `json:"id"`
-
-	Entity
-
-	RegionCode2  RegionPhoneCode
-	SimpleNumber SimplePhoneNumber `gorm:"unique"`
-	FullNumber   FullPhoneNumber
-}
-
-// PhoneNumberQuery 查询参数
-type PhoneNumberQuery struct {
-	Pagination Pagination
-	All        bool // 查询全部条目
-	Want       *PhoneNumberDTO
-}
-
-// PhoneNumberService ...
-type PhoneNumberService interface {
-	Insert(c context.Context, o *PhoneNumberDTO) (*PhoneNumberDTO, error)
-	Update(c context.Context, id PhoneNumberID, o *PhoneNumberDTO) (*PhoneNumberDTO, error)
-	Delete(c context.Context, id PhoneNumberID) error
-
-	Find(c context.Context, id PhoneNumberID) (*PhoneNumberDTO, error)
-	List(c context.Context, q *PhoneNumberQuery) ([]*PhoneNumberDTO, error)
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -184,3 +142,6 @@ func parseFullPhoneNumberParts(str string) (RegionPhoneCode, SimplePhoneNumber, 
 	}
 	return RegionPhoneCode(part1), SimplePhoneNumber(part2), nil
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF

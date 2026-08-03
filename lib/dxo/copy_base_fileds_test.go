@@ -1,4 +1,4 @@
-package rbac
+package dxo
 
 import (
 	"crypto/rand"
@@ -10,10 +10,9 @@ import (
 
 func TestCopyBaseFields(t *testing.T) {
 
-	d1 := new(PermissionDTO)
-	e1 := new(PermissionEntity)
-	d2 := new(PermissionDTO)
-
+	d1 := new(BaseDTO)
+	e1 := new(BaseEntity)
+	d2 := new(BaseDTO)
 	now := lang.Now()
 	uuid := make([]byte, 16)
 

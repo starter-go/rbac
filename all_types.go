@@ -3,6 +3,7 @@ package rbac
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/lib/classes/checkers"
 	"github.com/starter-go/rbac/lib/classes/groups"
 	"github.com/starter-go/rbac/lib/classes/permissions"
 	"github.com/starter-go/rbac/lib/classes/regions"
@@ -19,7 +20,7 @@ import (
 // type AuthenticationID = dxo.AuthenticationID
 
 // EmailAddressID ...
-type EmailAddressID = dxo.EmailAddressID
+// type EmailAddressID = dxo.EmailAddressID
 
 // GroupID 是通用的资源组标识符
 // type GroupID = dxo.GroupID
@@ -56,6 +57,22 @@ type AuthenticationEntity = authentications.Entity
 type AuthenticationDAO = authentications.DAO
 
 type AuthenticationService = authentications.Service
+
+////////////////////////////////////////////////////////////////////////////////
+// checkers
+
+type CheckerService = checkers.Service
+
+type CheckerChain = checkers.CheckerChain
+
+type CheckerRegistry = checkers.CheckerRegistry
+
+////////////////////////////////////////////////////////////////////////////////
+// email
+
+type EmailAddress = dxo.EmailAddress
+
+type EmailAddressID = dxo.EmailAddressID
 
 ////////////////////////////////////////////////////////////////////////////////
 // groups

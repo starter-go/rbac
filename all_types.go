@@ -3,6 +3,7 @@ package rbac
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/lib/classes/authx"
 	"github.com/starter-go/rbac/lib/classes/checkers"
 	"github.com/starter-go/rbac/lib/classes/groups"
 	"github.com/starter-go/rbac/lib/classes/permissions"
@@ -58,6 +59,19 @@ type AuthenticationEntity = authentications.Entity
 type AuthenticationDAO = authentications.DAO
 
 type AuthenticationService = authentications.Service
+
+// authx
+
+type Authentication = authx.Authentication
+
+type Authenticator = authx.Authenticator
+
+type Authorization = authx.Authorization
+
+type Authorizer = authx.Authorizer
+
+// [注意] 应该使用 authx.Registry 作为注入 api
+type AuthxRegistry = authx.Registry
 
 ////////////////////////////////////////////////////////////////////////////////
 // checkers

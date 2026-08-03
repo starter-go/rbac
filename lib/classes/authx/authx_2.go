@@ -31,15 +31,11 @@ type Authorizer interface {
 	Authorize(a2 *Authorization) error
 }
 
-// 包含授权组件注册信息
-type AuthorizerRegistration struct {
-	Authorizer Authorizer
-
-	Action Action
-
-	Enabled bool
-
-	Label string
-
-	Priority int
-}
+// // 包含授权组件注册信息
+// type AuthorizerRegistration struct {
+// 	Authorizer Authorizer
+// 	Action Action
+// 	Enabled bool
+// 	Label string
+// 	Priority int
+// }

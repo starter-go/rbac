@@ -38,15 +38,11 @@ type Authenticator interface {
 	Authenticate(a2 *Authentication) error
 }
 
-// AuthenticatorRegistration 结构包含验证器注册信息
-type AuthenticatorRegistration struct {
-	Authenticator Authenticator
-
-	Enabled bool
-
-	Label string
-
-	Mechanism Mechanism
-
-	Priority int
-}
+// // AuthenticatorRegistration 结构包含验证器注册信息
+// type AuthenticatorRegistration struct {
+// 	Authenticator Authenticator
+// 	Enabled bool
+// 	Label string
+// 	Mechanism Mechanism
+// 	Priority int
+// }

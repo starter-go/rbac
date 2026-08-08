@@ -3,7 +3,7 @@ package mem
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/users"
+	"github.com/starter-go/rbac/api/classes/users"
 	"gorm.io/gorm"
 )
 
@@ -15,6 +15,21 @@ type MemoryUserDao struct {
 
 	Engine IMemoryEngine //starter:inject("#")
 
+}
+
+// FindByEmail implements [users.UserDAO].
+func (inst *MemoryUserDao) FindByEmail(db *gorm.DB, addr users.EmailAddress) (*users.Entity, error) {
+	panic("unimplemented")
+}
+
+// FindByName implements [users.UserDAO].
+func (inst *MemoryUserDao) FindByName(db *gorm.DB, name users.UserName) (*users.Entity, error) {
+	panic("unimplemented")
+}
+
+// FindByPhone implements [users.UserDAO].
+func (inst *MemoryUserDao) FindByPhone(db *gorm.DB, num users.PhoneNumber) (*users.Entity, error) {
+	panic("unimplemented")
 }
 
 func (inst *MemoryUserDao) innerMakeItem() *users.Entity {

@@ -81,6 +81,7 @@ func (inst* pad1f964415_testcom_TryDaoForAuthent) inject(injext application.Inje
 
 	
     com.Dao = inst.getDao(ie)
+    com.AuthSer = inst.getAuthSer(ie)
 
 
     return nil
@@ -89,6 +90,11 @@ func (inst* pad1f964415_testcom_TryDaoForAuthent) inject(injext application.Inje
 
 func (inst*pad1f964415_testcom_TryDaoForAuthent) getDao(ie application.InjectionExt)p24287f458.AuthenticationDAO{
     return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-AuthenticationDAO").(p24287f458.AuthenticationDAO)
+}
+
+
+func (inst*pad1f964415_testcom_TryDaoForAuthent) getAuthSer(ie application.InjectionExt)p24287f458.AuthService{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-AuthService").(p24287f458.AuthService)
 }
 
 

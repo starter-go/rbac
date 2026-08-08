@@ -2,20 +2,20 @@ package rbac
 
 import (
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/authentications"
-	"github.com/starter-go/rbac/lib/classes/authx"
-	"github.com/starter-go/rbac/lib/classes/checkers"
-	"github.com/starter-go/rbac/lib/classes/emailaddresses"
-	"github.com/starter-go/rbac/lib/classes/groups"
-	"github.com/starter-go/rbac/lib/classes/permissions"
-	"github.com/starter-go/rbac/lib/classes/phonenumbers"
-	"github.com/starter-go/rbac/lib/classes/regions"
-	"github.com/starter-go/rbac/lib/classes/roles"
-	"github.com/starter-go/rbac/lib/classes/sessions"
-	"github.com/starter-go/rbac/lib/classes/tables"
-	"github.com/starter-go/rbac/lib/classes/tokens"
-	"github.com/starter-go/rbac/lib/classes/users"
-	"github.com/starter-go/rbac/lib/dxo"
+	"github.com/starter-go/rbac/api/classes/authentications"
+	"github.com/starter-go/rbac/api/classes/authx"
+	"github.com/starter-go/rbac/api/classes/checkers"
+	"github.com/starter-go/rbac/api/classes/emailaddresses"
+	"github.com/starter-go/rbac/api/classes/groups"
+	"github.com/starter-go/rbac/api/classes/permissions"
+	"github.com/starter-go/rbac/api/classes/phonenumbers"
+	"github.com/starter-go/rbac/api/classes/regions"
+	"github.com/starter-go/rbac/api/classes/roles"
+	"github.com/starter-go/rbac/api/classes/sessions"
+	"github.com/starter-go/rbac/api/classes/tables"
+	"github.com/starter-go/rbac/api/classes/tokens"
+	"github.com/starter-go/rbac/api/classes/users"
+	"github.com/starter-go/rbac/api/dxo"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +105,11 @@ type CheckerRegistry = checkers.CheckerRegistry
 
 // Checking 表示一次业务检查的请求上下文, 包含要检查的实体列表与 DTO 列表
 type Checking = checkers.Checking
+
+////////////////////////////////////////////////////////////////////////////////
+// domain (name)
+
+type DomainName = dxo.DomainName
 
 ////////////////////////////////////////////////////////////////////////////////
 // email

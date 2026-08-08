@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/permissions"
+	"github.com/starter-go/rbac/api/classes/permissions"
 	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )

@@ -2,7 +2,7 @@ package agent
 
 import (
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/api/classes/authentications"
 	"gorm.io/gorm"
 )
 

@@ -1,6 +1,6 @@
 package rbac
 
-import "github.com/starter-go/rbac/lib/dxo"
+import "github.com/starter-go/rbac/api/dxo"
 
 var theTableNamer dxo.RbacTableNamer
 

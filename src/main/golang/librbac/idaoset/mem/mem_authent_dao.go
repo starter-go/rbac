@@ -2,7 +2,7 @@ package mem
 
 import (
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/api/classes/authentications"
 	"gorm.io/gorm"
 )
 

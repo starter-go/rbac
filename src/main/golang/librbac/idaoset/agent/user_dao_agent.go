@@ -2,7 +2,7 @@ package agent
 
 import (
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/users"
+	"github.com/starter-go/rbac/api/classes/users"
 	"gorm.io/gorm"
 )
 
@@ -15,6 +15,24 @@ type UserDaoAgent struct {
 	Serivce rbac.DaoSetService //starter:inject("#")
 
 	holder rbac.DaoSetHolder
+}
+
+// FindByEmail implements [users.UserDAO].
+func (inst *UserDaoAgent) FindByEmail(db *gorm.DB, addr users.EmailAddress) (*users.Entity, error) {
+
+	return inst.target().FindByEmail(db, addr)
+}
+
+// FindByName implements [users.UserDAO].
+func (inst *UserDaoAgent) FindByName(db *gorm.DB, name users.UserName) (*users.Entity, error) {
+
+	return inst.target().FindByName(db, name)
+}
+
+// FindByPhone implements [users.UserDAO].
+func (inst *UserDaoAgent) FindByPhone(db *gorm.DB, num users.PhoneNumber) (*users.Entity, error) {
+
+	return inst.target().FindByPhone(db, num)
 }
 
 func (inst *UserDaoAgent) target() rbac.UserDAO {

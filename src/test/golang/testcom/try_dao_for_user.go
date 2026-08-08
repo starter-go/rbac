@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/users"
+	"github.com/starter-go/rbac/api/classes/users"
 	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )
@@ -48,7 +48,7 @@ func (inst *TryDaoForUser) runTryUserService(cc context.Context) error {
 	it1.Email = "foo@bar"
 	it1.Phone = "1234567890"
 	it1.Name = "foo"
-	it1.NickName = "Fu"
+	it1.Nickname = "Fu"
 	it1.Language = "zh_cn"
 	it1.Roles = "user,sudo"
 
@@ -169,7 +169,7 @@ func (inst *TryDaoForUser) runTryUserDao(cc context.Context) error {
 	it4, err := dao.Update(db, id, func(old *users.Entity) error {
 
 		old.Avatar = "http://"
-		old.NickName = "foo"
+		old.Nickname = "foo"
 
 		return nil
 	})

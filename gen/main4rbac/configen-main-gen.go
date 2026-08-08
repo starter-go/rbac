@@ -38,7 +38,6 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p6051122a59_unsupported_UnsupportedUserDao{})
     inst.register(&p8b617a3f2c_core_RbacDaoSetLoader{})
     inst.register(&p8b617a3f2c_core_RbacDaoSetServiceImpl{})
-    inst.register(&p914b425f94_iauthx_AuthxServiceImpl{})
     inst.register(&p9abb4d6558_mem_MemoryAuthenticationDAO{})
     inst.register(&p9abb4d6558_mem_MemoryDaoSetProvider{})
     inst.register(&p9abb4d6558_mem_MemoryEngineFacade{})
@@ -53,9 +52,6 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pa89018078d_agent_SessionDaoAgent{})
     inst.register(&pa89018078d_agent_TableDaoAgent{})
     inst.register(&pa89018078d_agent_UserDaoAgent{})
-    inst.register(&pde0f2595d5_iservices_CheckerServiceImpl{})
-    inst.register(&pde0f2595d5_iservices_TableServiceImpl{})
-    inst.register(&pde0f2595d5_iservices_UserServiceImpl{})
 
 
     return nil

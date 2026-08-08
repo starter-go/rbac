@@ -11,6 +11,16 @@
                 "id": "test",
                 "path": "src/test/golang",
                 "r": true
+            },
+            {
+                "id": "core",
+                "path": "src/core/golang",
+                "r": true
+            },
+            {
+                "id": "ext",
+                "path": "src/extension/golang",
+                "r": true
             }
         ],
         "destinations": [
@@ -26,6 +36,20 @@
                 "path": "gen/test4rbac",
                 "sources": [
                     "test"
+                ]
+            },
+            {
+                "id": "core",
+                "path": "gen/core4rbac",
+                "sources": [
+                    "core"
+                ]
+            },
+            {
+                "id": "ext",
+                "path": "gen/ext4rbac",
+                "sources": [
+                    "ext"
                 ]
             }
         ]

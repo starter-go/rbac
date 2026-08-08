@@ -11,8 +11,8 @@ import (
 
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/tables"
-	"github.com/starter-go/rbac/lib/dxo"
+	"github.com/starter-go/rbac/api/classes/tables"
+	"github.com/starter-go/rbac/api/dxo"
 	"gorm.io/gorm"
 )
 

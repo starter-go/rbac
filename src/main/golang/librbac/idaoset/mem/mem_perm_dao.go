@@ -3,7 +3,7 @@ package mem
 import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/permissions"
+	"github.com/starter-go/rbac/api/classes/permissions"
 	"gorm.io/gorm"
 )
 

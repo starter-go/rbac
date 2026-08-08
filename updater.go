@@ -2,9 +2,9 @@ package rbac
 
 import (
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/tables"
-	"github.com/starter-go/rbac/lib/classes/users"
-	"github.com/starter-go/rbac/localization"
+	"github.com/starter-go/rbac/api/classes/tables"
+	"github.com/starter-go/rbac/api/classes/users"
+	"github.com/starter-go/rbac/api/localization"
 )
 
 type EntityUpdater struct {

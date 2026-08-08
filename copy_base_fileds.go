@@ -1,6 +1,6 @@
 package rbac
 
-import "github.com/starter-go/rbac/lib/dxo"
+import "github.com/starter-go/rbac/api/dxo"
 
 func CopyBaseFieldsE2D(src EntityRef, dst DTORef) error {
 	return dxo.CopyBaseFieldsE2D(src, dst)

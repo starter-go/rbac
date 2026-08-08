@@ -1,8 +1,8 @@
 package rbac
 
 import (
-	"github.com/starter-go/rbac/lib/classes/authx"
-	"github.com/starter-go/rbac/lib/dxo"
+	"github.com/starter-go/rbac/api/classes/authx"
+	"github.com/starter-go/rbac/api/dxo"
 )
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -17,6 +17,8 @@ const (
 const (
 	theMainModuleResPath = "src/main/resources"
 	theTestModuleResPath = "src/test/resources"
+	theCoreModuleResPath = "src/core/resources"
+	theExtModuleResPath  = "src/extension/resources"
 )
 
 //go:embed "src/main/resources"
@@ -25,13 +27,37 @@ var theMainModuleResFS embed.FS
 //go:embed "src/test/resources"
 var theTestModuleResFS embed.FS
 
+//go:embed "src/core/resources"
+var theCoreModuleResFS embed.FS
+
+//go:embed "src/extension/resources"
+var theExtModuleResFS embed.FS
+
 ////////////////////////////////////////////////////////////////////////////////
 
-func BuildModuleForLib() *application.ModuleBuilder {
+func BuildModuleForMain() *application.ModuleBuilder {
 
 	mb := new(application.ModuleBuilder)
-	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#lib")
+	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#main")
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
+
+	return mb
+}
+
+func BuildModuleForCore() *application.ModuleBuilder {
+
+	mb := new(application.ModuleBuilder)
+	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#core")
+	mb.EmbedResources(theCoreModuleResFS, theCoreModuleResPath)
+
+	return mb
+}
+
+func BuildModuleForExtension() *application.ModuleBuilder {
+
+	mb := new(application.ModuleBuilder)
+	mb.Version(theModuleVersion).Revision(theModuleRev).Name(theModuleName + "#extension")
+	mb.EmbedResources(theExtModuleResFS, theExtModuleResPath)
 
 	return mb
 }
@@ -44,3 +70,6 @@ func BuildModuleForTest() *application.ModuleBuilder {
 
 	return mb
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF

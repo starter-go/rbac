@@ -3,7 +3,7 @@ package agent
 import (
 	"github.com/starter-go/rbac"
 
-	"github.com/starter-go/rbac/lib/classes/tables"
+	"github.com/starter-go/rbac/api/classes/tables"
 
 	"gorm.io/gorm"
 )

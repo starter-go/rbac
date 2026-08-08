@@ -3,8 +3,9 @@ package testcom
 import (
 	"context"
 
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/rbac/lib/classes/authentications"
+	"github.com/starter-go/rbac/api/classes/authentications"
 	"github.com/starter-go/units"
 	"github.com/starter-go/vlog"
 )
@@ -15,7 +16,8 @@ type TryDaoForAuthent struct {
 
 	_as func(units.Unit) //starter:as(".")
 
-	Dao rbac.AuthenticationDAO //starter:inject("#")
+	Dao     rbac.AuthenticationDAO //starter:inject("#")
+	AuthSer rbac.AuthService       //starter:inject("#")
 
 }
 
@@ -29,8 +31,61 @@ func (inst *TryDaoForAuthent) ListRegistrations(list []*units.Registration) []*u
 		Priority: 10,
 	}
 
-	list = append(list, u1)
+	u2 := &units.Registration{
+		Name:     "try-login",
+		Enabled:  true,
+		Do:       inst.runTryLogin,
+		Priority: 0,
+	}
+
+	list = append(list, u1, u2)
 	return list
+}
+
+func (inst *TryDaoForAuthent) runTryLogin(cc context.Context) error {
+
+	ser := inst.AuthSer
+	username := "foo"
+	password := "123"
+	passb64 := lang.Base64FromBytes([]byte(password))
+
+	a1 := &rbac.AuthDTO{
+		Mechanism: rbac.MechanismPassword,
+		Account:   username,
+		Secret:    passb64,
+	}
+	a2 := &rbac.AuthDTO{
+		Action: rbac.ActionLogin,
+	}
+	a3 := &rbac.AuthDTO{
+		Mechanism: rbac.MechanismSMS,
+		Action:    rbac.ActionResetPassword,
+		Account:   "1234567890",
+	}
+
+	list1 := []*rbac.AuthDTO{a1, a2, a3}
+	for i, it := range list1 {
+		inst.innerLogAuthDTO("want", i, it)
+	}
+
+	list2, err := ser.HandleDTO(cc, list1)
+	if err != nil {
+		return err
+	}
+	for i, it := range list2 {
+		inst.innerLogAuthDTO("have", i, it)
+	}
+
+	return nil
+}
+
+func (inst *TryDaoForAuthent) innerLogAuthDTO(tag string, index int, it *rbac.AuthDTO) {
+
+	act := it.Action
+	mech := it.Mechanism
+	msg := it.Message
+
+	vlog.Info("%s [rbac.AuthDTO index:%d action:'%s' mechanism:'%s' msg:'%s' ]", tag, index, act, mech, msg)
 }
 
 func (inst *TryDaoForAuthent) runTryAuthentDao(cc context.Context) error {

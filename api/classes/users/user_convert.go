@@ -85,6 +85,7 @@ func ConvertE2I(src *Entity, dst *dxo.UserInfo) error {
 	dst.Email = src.Email
 	dst.Language = src.Language
 	dst.Roles = src.Roles
+	dst.Domain = src.Domain
 
 	dst.Enabled = src.Enabled
 	dst.Locked = src.Locked
@@ -108,6 +109,7 @@ func ConvertI2E(src *dxo.UserInfo, dst *Entity) error {
 	dst.Email = src.Email
 	dst.Language = src.Language
 	dst.Roles = src.Roles
+	dst.Domain = src.Domain
 
 	dst.Enabled = src.Enabled
 	dst.Locked = src.Locked

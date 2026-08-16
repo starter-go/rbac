@@ -373,9 +373,27 @@ func (inst* p9abb4d6558_mem_MemoryAuthenticationDAO) inject(injext application.I
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryAuthenticationDAO) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryAuthenticationDAO) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryAuthenticationDAO) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 
@@ -411,9 +429,27 @@ func (inst* p9abb4d6558_mem_MemoryPermissionDao) inject(injext application.Injec
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryPermissionDao) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryPermissionDao) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryPermissionDao) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 
@@ -449,9 +485,27 @@ func (inst* p9abb4d6558_mem_MemoryRoleDao) inject(injext application.InjectionEx
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryRoleDao) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryRoleDao) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryRoleDao) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 
@@ -487,9 +541,27 @@ func (inst* p9abb4d6558_mem_MemorySessionDao) inject(injext application.Injectio
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemorySessionDao) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemorySessionDao) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemorySessionDao) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 
@@ -525,9 +597,27 @@ func (inst* p9abb4d6558_mem_MemoryTableDao) inject(injext application.InjectionE
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryTableDao) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryTableDao) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryTableDao) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 
@@ -563,9 +653,27 @@ func (inst* p9abb4d6558_mem_MemoryUserDao) inject(injext application.InjectionEx
 	nop(ie, com)
 
 	
+    com.ConfigEnabled = inst.getConfigEnabled(ie)
+    com.ConfigPriority = inst.getConfigPriority(ie)
+    com.ConfigClass = inst.getConfigClass(ie)
 
 
     return nil
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryUserDao) getConfigEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${rbac-data-group.memory.enabled}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryUserDao) getConfigPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${rbac-data-group.memory.priority}")
+}
+
+
+func (inst*p9abb4d6558_mem_MemoryUserDao) getConfigClass(ie application.InjectionExt)string{
+    return ie.GetString("${rbac-data-group.memory.class}")
 }
 
 

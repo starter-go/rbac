@@ -22,7 +22,7 @@ type SessionDaoAgent struct {
 
 // GetRegistration implements [sessions.DAO].
 func (inst *SessionDaoAgent) GetRegistration() *libdaoapi.DaoRegistration {
-	panic("unimplemented")
+	return new(libdao.DaoRegistration)
 }
 
 func (inst *SessionDaoAgent) target() rbac.SessionDAO {

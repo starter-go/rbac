@@ -22,7 +22,7 @@ type PermissionDaoAgent struct {
 
 // GetRegistration implements [permissions.DAO].
 func (inst *PermissionDaoAgent) GetRegistration() *libdaoapi.DaoRegistration {
-	panic("unimplemented")
+	return new(libdao.DaoRegistration)
 }
 
 func (inst *PermissionDaoAgent) target() rbac.PermissionDAO {

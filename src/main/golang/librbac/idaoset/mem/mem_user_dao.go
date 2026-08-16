@@ -3,6 +3,7 @@ package mem
 import (
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/rbac/api/classes/users"
+	"github.com/starter-go/v0/libdao"
 	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"gorm.io/gorm"
 )
@@ -13,6 +14,9 @@ type MemoryUserDao struct {
 
 	_as func(rbac.UserDAO) //starter:as(".")
 
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.memory.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.memory.priority}")
+	ConfigClass    string //starter:inject("${rbac-data-group.memory.class}")
 }
 
 // Delete implements [users.UserDAO].
@@ -62,7 +66,17 @@ func (inst *MemoryUserDao) Update(db *gorm.DB, id users.ID, callback func(old *u
 
 // GetRegistration implements [users.UserDAO].
 func (inst *MemoryUserDao) GetRegistration() *libdaoapi.DaoRegistration {
-	panic("unimplemented")
+	r1 := &libdao.DaoRegistration{
+		DAO: inst,
+
+		Priority: inst.ConfigPriority,
+		Enabled:  inst.ConfigEnabled,
+		Class:    inst.ConfigClass,
+
+		Name: "MemoryUserDao",
+		ID:   "mem-dao-for-users",
+	}
+	return r1
 }
 
 func (inst *MemoryUserDao) _impl() rbac.UserDAO {

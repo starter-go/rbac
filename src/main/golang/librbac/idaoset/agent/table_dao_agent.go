@@ -24,7 +24,7 @@ type TableDaoAgent struct {
 
 // GetRegistration implements [tables.DAO].
 func (inst *TableDaoAgent) GetRegistration() *libdaoapi.DaoRegistration {
-	panic("unimplemented")
+	return new(libdao.DaoRegistration)
 }
 
 func (inst *TableDaoAgent) target() rbac.TableDAO {

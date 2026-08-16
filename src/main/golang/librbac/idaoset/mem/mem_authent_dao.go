@@ -3,6 +3,7 @@ package mem
 import (
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/rbac/api/classes/authentications"
+	"github.com/starter-go/v0/libdao"
 	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"gorm.io/gorm"
 )
@@ -12,6 +13,10 @@ type MemoryAuthenticationDAO struct {
 	//starter:component
 
 	_as func(rbac.AuthenticationDAO) //starter:as(".")
+
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.memory.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.memory.priority}")
+	ConfigClass    string //starter:inject("${rbac-data-group.memory.class}")
 
 }
 
@@ -47,7 +52,19 @@ func (inst *MemoryAuthenticationDAO) Update(db *gorm.DB, id authentications.ID, 
 
 // GetRegistration implements [IAuthenticationDAO].
 func (inst *MemoryAuthenticationDAO) GetRegistration() *libdaoapi.DaoRegistration {
-	panic("unimplemented")
+
+	r1 := &libdao.DaoRegistration{
+		DAO: inst,
+
+		Priority: inst.ConfigPriority,
+		Enabled:  inst.ConfigEnabled,
+		Class:    inst.ConfigClass,
+
+		Name: "MemoryAuthenticationDAO",
+		ID:   "mem-dao-for-authentications",
+	}
+	return r1
+
 }
 
 func (inst *MemoryAuthenticationDAO) _impl() rbac.AuthenticationDAO {

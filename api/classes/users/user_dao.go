@@ -1,8 +1,15 @@
 package users
 
-import "gorm.io/gorm"
+import (
+	"github.com/starter-go/v0/libdao"
+	"gorm.io/gorm"
+)
 
 type UserDAO interface {
+
+	// extends
+
+	libdao.DAO
 
 	// db
 

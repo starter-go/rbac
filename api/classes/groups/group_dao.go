@@ -1,9 +1,16 @@
 package groups
 
-import "gorm.io/gorm"
+import (
+	"github.com/starter-go/v0/libdao"
+	"gorm.io/gorm"
+)
 
 // Group_DAO 是针对 GroupEntity 的 DAO
 type DAO interface {
+
+	// extends
+
+	libdao.DAO
 
 	// db
 

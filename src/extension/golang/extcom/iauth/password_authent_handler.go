@@ -15,7 +15,7 @@ type PasswordAuthenticator struct {
 
 	_as func(authx.Registry) //starter:as(".")
 
-	UserDao users.DAO //starter:as("#")
+	UserDao rbac.UserDAO //starter:inject("#")
 }
 
 // Accept implements [authx.Authenticator].

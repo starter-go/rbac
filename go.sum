@@ -33,6 +33,8 @@ github.com/starter-go/starter v1.0.14 h1:TPVTOlKrU/9XBuSVy2hzQb13gKT1Sbup/s3vQ5G
 github.com/starter-go/starter v1.0.14/go.mod h1:6yqAF+I/kEXPbcCczo6Bg2icETyxG9AyhdjmMoUeFq8=
 github.com/starter-go/units v0.10.0 h1:j0vzqEkxWCFCDcbv/D23lQmMkZdbPyrxc6hHIXDkK9c=
 github.com/starter-go/units v0.10.0/go.mod h1:wEiJ8qJFhX1cU0Dw5n05iMJV0SRk9oEzJcngUTVMr04=
+github.com/starter-go/v0/libdao v0.10.0 h1:3iuu3+cNykMo451LuHpqGHaUg3koA30YxgEqQjgvo/I=
+github.com/starter-go/v0/libdao v0.10.0/go.mod h1:9Qszd7sZt+a06CsUDnzUIbXSjqzNozzu0n34qWRsVNM=
 github.com/starter-go/vlog v0.9.12 h1:gaKCLPvEY6d8SoVfEemGTqyNdrFZlRqf1dVDimCqgZw=
 github.com/starter-go/vlog v0.9.12/go.mod h1:ywWUCfWNTqXrelvO4/3sQ04SCW4ClR3PiN3qpSlXhH0=
 github.com/starter-go/vlog v0.10.0 h1:K9jkGPFqCTfMZYF69rcgcPDjYckEHOJHT6Jw2h3zQJU=

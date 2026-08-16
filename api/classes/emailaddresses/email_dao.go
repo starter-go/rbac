@@ -1,9 +1,16 @@
 package emailaddresses
 
-import "gorm.io/gorm"
+import (
+	"github.com/starter-go/v0/libdao"
+	"gorm.io/gorm"
+)
 
 // EmailAddress_DAO ...
 type DAO interface {
+
+	// extends
+
+	libdao.DAO
 
 	// edit
 

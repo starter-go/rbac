@@ -2,6 +2,8 @@ package agent
 
 import (
 	"github.com/starter-go/rbac"
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 
 	"github.com/starter-go/rbac/api/classes/tables"
 
@@ -14,18 +16,23 @@ type TableDaoAgent struct {
 
 	_as func(rbac.TableDAO) //starter:as("#")
 
-	Serivce rbac.DaoSetService //starter:inject("#")
+	DaoProviderList []rbac.TableDAO                 //starter:inject(".")
+	DaoSelector     string                          //starter:inject("${daoset.rbac.selector}")
+	holder          libdao.DaoHolder[rbac.TableDAO] // cache for selected-dao
 
-	holder rbac.DaoSetHolder
+}
+
+// GetRegistration implements [tables.DAO].
+func (inst *TableDaoAgent) GetRegistration() *libdaoapi.DaoRegistration {
+	panic("unimplemented")
 }
 
 func (inst *TableDaoAgent) target() rbac.TableDAO {
-	ser := inst.Serivce
-	tar, err := inst.holder.Get(ser)
-	if err != nil {
-		panic(err)
-	}
-	return tar.Tables
+
+	sel := inst.DaoSelector
+	all := inst.DaoProviderList
+	return inst.holder.Select(sel, all)
+
 }
 
 // Delete implements [tables.UserDAO].

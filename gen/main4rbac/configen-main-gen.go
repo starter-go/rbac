@@ -30,17 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&p6051122a59_unsupported_UnsupportedAuthenticationDAO{})
-    inst.register(&p6051122a59_unsupported_UnsupportedDaoSetProvider{})
-    inst.register(&p6051122a59_unsupported_UnsupportedPermissionDao{})
-    inst.register(&p6051122a59_unsupported_UnsupportedRoleDao{})
-    inst.register(&p6051122a59_unsupported_UnsupportedSessionDao{})
-    inst.register(&p6051122a59_unsupported_UnsupportedUserDao{})
-    inst.register(&p8b617a3f2c_core_RbacDaoSetLoader{})
-    inst.register(&p8b617a3f2c_core_RbacDaoSetServiceImpl{})
     inst.register(&p9abb4d6558_mem_MemoryAuthenticationDAO{})
-    inst.register(&p9abb4d6558_mem_MemoryDaoSetProvider{})
-    inst.register(&p9abb4d6558_mem_MemoryEngineFacade{})
     inst.register(&p9abb4d6558_mem_MemoryPermissionDao{})
     inst.register(&p9abb4d6558_mem_MemoryRoleDao{})
     inst.register(&p9abb4d6558_mem_MemorySessionDao{})

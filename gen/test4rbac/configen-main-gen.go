@@ -37,7 +37,6 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pad1f964415_testcom_TryDaoForSession{})
     inst.register(&pad1f964415_testcom_TryDaoForTable{})
     inst.register(&pad1f964415_testcom_TryDaoForUser{})
-    inst.register(&pad1f964415_testcom_TryDaoSet{})
 
 
     return nil

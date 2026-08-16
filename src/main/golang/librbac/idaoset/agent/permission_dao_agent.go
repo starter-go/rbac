@@ -3,6 +3,8 @@ package agent
 import (
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/rbac/api/classes/permissions"
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"gorm.io/gorm"
 )
 
@@ -12,18 +14,23 @@ type PermissionDaoAgent struct {
 
 	_as func(rbac.PermissionDAO) //starter:as("#")
 
-	Serivce rbac.DaoSetService //starter:inject("#")
+	DaoProviderList []rbac.PermissionDAO                 //starter:inject(".")
+	DaoSelector     string                               //starter:inject("${daoset.rbac.selector}")
+	holder          libdao.DaoHolder[rbac.PermissionDAO] // cache for selected-dao
 
-	holder rbac.DaoSetHolder
+}
+
+// GetRegistration implements [permissions.DAO].
+func (inst *PermissionDaoAgent) GetRegistration() *libdaoapi.DaoRegistration {
+	panic("unimplemented")
 }
 
 func (inst *PermissionDaoAgent) target() rbac.PermissionDAO {
-	ser := inst.Serivce
-	tar, err := inst.holder.Get(ser)
-	if err != nil {
-		panic(err)
-	}
-	return tar.Permissions
+
+	sel := inst.DaoSelector
+	all := inst.DaoProviderList
+	return inst.holder.Select(sel, all)
+
 }
 
 // Delete implements [permissions.UserDAO].

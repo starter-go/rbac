@@ -1,8 +1,9 @@
 package mem
 
 import (
-	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac"
 	"github.com/starter-go/rbac/api/classes/tables"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"gorm.io/gorm"
 )
 
@@ -10,133 +11,45 @@ type MemoryTableDao struct {
 
 	//starter:component
 
-	_as func(ITableDAO) //starter:as("#")
-
-	Engine IMemoryEngine //starter:inject("#")
+	_as func(rbac.TableDAO) //starter:as(".")
 
 }
 
-func (inst *MemoryTableDao) innerMakeItem() *tables.Entity {
-	return new(tables.Entity)
+// Delete implements [tables.DAO].
+func (inst *MemoryTableDao) Delete(db *gorm.DB, id tables.TableID) error {
+	panic("unimplemented")
 }
 
-func (inst *MemoryTableDao) innerGenUUID() lang.UUID {
-	return inst.Engine.NextUUID()
+// Find implements [tables.DAO].
+func (inst *MemoryTableDao) Find(db *gorm.DB, id tables.TableID) (*tables.TableEntity, error) {
+	panic("unimplemented")
 }
 
-func (inst *MemoryTableDao) innerIsWant(want, have *tables.Entity) bool {
-
-	if want == nil || have == nil {
-		return false
-	}
-
-	return true
-}
-
-// Delete implements [ITableDAO].
-func (inst *MemoryTableDao) Delete(db *gorm.DB, id tables.ID) error {
-
-	item := inst.innerMakeItem()
-	ls := inst.Engine.NewLS()
-
-	ls.SetIntID(int64(id))
-	ls.SetItem(item)
-
-	return ls.DoDelete()
-
-}
-
-// Find implements [ITableDAO].
-func (inst *MemoryTableDao) Find(db *gorm.DB, id tables.ID) (*tables.Entity, error) {
-
-	item := inst.innerMakeItem()
-	ls := inst.Engine.NewLS()
-
-	ls.SetIntID(int64(id))
-	ls.SetItem(item)
-
-	err := ls.DoFind()
-	return item, err
-
-}
-
-// GetDB implements [ITableDAO].
+// GetDB implements [tables.DAO].
 func (inst *MemoryTableDao) GetDB(old *gorm.DB) *gorm.DB {
-
-	return inst.Engine.GetDB(old)
-
+	panic("unimplemented")
 }
 
-// Insert implements [ITableDAO].
-func (inst *MemoryTableDao) Insert(db *gorm.DB, item *tables.Entity) (*tables.Entity, error) {
-
-	uuid := inst.innerGenUUID()
-	item.UUID = uuid
-
-	ls := inst.Engine.NewLS()
-	ls.OnSetIntID(func(id int64) {
-		item.ID = tables.ID(id)
-	})
-	ls.SetItem(item)
-
-	err := ls.DoInsert()
-	return item, err
-
+// Insert implements [tables.DAO].
+func (inst *MemoryTableDao) Insert(db *gorm.DB, item *tables.TableEntity) (*tables.TableEntity, error) {
+	panic("unimplemented")
 }
 
-// Query implements [ITableDAO].
-func (inst *MemoryTableDao) Query(db *gorm.DB, q *tables.Query) ([]*tables.Entity, error) {
-
-	want := q.Want
-	model := inst.innerMakeItem()
-	ls := inst.Engine.NewLS()
-	page := &q.Pagination
-	results := make([]*tables.Entity, 0)
-
-	mq, err := DoQuery(ls, model)
-	if err != nil {
-		return nil, err
-	}
-
-	mq.NewItem(func() *tables.Entity {
-		return inst.innerMakeItem()
-
-	}).Where(func(item *tables.Entity) bool {
-		return inst.innerIsWant(want, item)
-
-	}).Then(func(item *tables.Entity) {
-		results = append(results, item)
-	})
-
-	err = mq.Query(page)
-	return results, err
-
+// Query implements [tables.DAO].
+func (inst *MemoryTableDao) Query(db *gorm.DB, q *tables.TableQuery) ([]*tables.TableEntity, error) {
+	panic("unimplemented")
 }
 
-// Update implements [ITableDAO].
-func (inst *MemoryTableDao) Update(db *gorm.DB, id tables.ID, callback func(old *tables.Entity) error) (*tables.Entity, error) {
-
-	item := new(tables.Entity)
-	ls := inst.Engine.NewLS()
-
-	ls.SetIntID(int64(id))
-	ls.SetItem(item)
-
-	err := ls.DoFind()
-	if err != nil {
-		return nil, err
-	}
-
-	err = callback(item)
-	if err != nil {
-		return nil, err
-	}
-
-	err = ls.DoUpdate()
-	return item, err
-
+// Update implements [tables.DAO].
+func (inst *MemoryTableDao) Update(db *gorm.DB, id tables.TableID, callback func(old *tables.TableEntity) error) (*tables.TableEntity, error) {
+	panic("unimplemented")
 }
 
-func (inst *MemoryTableDao) _impl() ITableDAO {
+// GetRegistration implements [ITableDAO].
+func (inst *MemoryTableDao) GetRegistration() *libdaoapi.DaoRegistration {
+	panic("unimplemented")
+}
+
+func (inst *MemoryTableDao) _impl() rbac.TableDAO {
 	return inst
 }

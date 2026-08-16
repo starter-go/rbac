@@ -1,9 +1,54 @@
 package ext4rbac
 import (
     p24287f458 "github.com/starter-go/rbac"
+    p52f05ffa6 "github.com/starter-go/rbac/src/extension/golang/extcom/iauth"
     p6a368d170 "github.com/starter-go/rbac/src/extension/golang/extcom/iservices"
      "github.com/starter-go/application"
 )
+
+// type p52f05ffa6.PasswordAuthenticator in package:github.com/starter-go/rbac/src/extension/golang/extcom/iauth
+//
+// id:com-52f05ffa69ecfffd-iauth-PasswordAuthenticator
+// class:class-a9adc578e4b7f0bd1de2909d6ab953e5-Registry
+// alias:
+// scope:singleton
+//
+type p52f05ffa69_iauth_PasswordAuthenticator struct {
+}
+
+func (inst* p52f05ffa69_iauth_PasswordAuthenticator) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-52f05ffa69ecfffd-iauth-PasswordAuthenticator"
+	r.Classes = "class-a9adc578e4b7f0bd1de2909d6ab953e5-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p52f05ffa69_iauth_PasswordAuthenticator) new() any {
+    return &p52f05ffa6.PasswordAuthenticator{}
+}
+
+func (inst* p52f05ffa69_iauth_PasswordAuthenticator) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p52f05ffa6.PasswordAuthenticator)
+	nop(ie, com)
+
+	
+    com.UserDao = inst.getUserDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*p52f05ffa69_iauth_PasswordAuthenticator) getUserDao(ie application.InjectionExt)p24287f458.UserDAO{
+    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-UserDAO").(p24287f458.UserDAO)
+}
+
+
 
 // type p6a368d170.CheckerServiceImpl in package:github.com/starter-go/rbac/src/extension/golang/extcom/iservices
 //

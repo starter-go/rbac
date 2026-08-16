@@ -2,9 +2,7 @@ package main4rbac
 import (
     p24287f458 "github.com/starter-go/rbac"
     pa89018078 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/agent"
-    p8b617a3f2 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/core"
     p9abb4d655 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem"
-    p6051122a5 "github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported"
      "github.com/starter-go/application"
 )
 
@@ -39,15 +37,27 @@ func (inst* pa89018078d_agent_AuthentDaoAgent) inject(injext application.Injecti
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_AuthentDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+func (inst*pa89018078d_agent_AuthentDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.AuthenticationDAO{
+    dst := make([]p24287f458.AuthenticationDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-AuthenticationDAO")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.AuthenticationDAO)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pa89018078d_agent_AuthentDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -83,15 +93,27 @@ func (inst* pa89018078d_agent_PermissionDaoAgent) inject(injext application.Inje
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_PermissionDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+func (inst*pa89018078d_agent_PermissionDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.PermissionDAO{
+    dst := make([]p24287f458.PermissionDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-PermissionDAO")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.PermissionDAO)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pa89018078d_agent_PermissionDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -127,15 +149,27 @@ func (inst* pa89018078d_agent_RoleDaoAgent) inject(injext application.InjectionE
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_RoleDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+func (inst*pa89018078d_agent_RoleDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.RoleDAO{
+    dst := make([]p24287f458.RoleDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-RoleDAO")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.RoleDAO)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pa89018078d_agent_RoleDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -171,15 +205,27 @@ func (inst* pa89018078d_agent_SessionDaoAgent) inject(injext application.Injecti
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_SessionDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+func (inst*pa89018078d_agent_SessionDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.SessionDAO{
+    dst := make([]p24287f458.SessionDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-SessionDAO")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.SessionDAO)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pa89018078d_agent_SessionDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -215,15 +261,27 @@ func (inst* pa89018078d_agent_TableDaoAgent) inject(injext application.Injection
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_TableDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
+func (inst*pa89018078d_agent_TableDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.TableDAO{
+    dst := make([]p24287f458.TableDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-TableDAO")
+    for _, item1 := range src {
+        item2 := item1.(p24287f458.TableDAO)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pa89018078d_agent_TableDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -259,109 +317,27 @@ func (inst* pa89018078d_agent_UserDaoAgent) inject(injext application.InjectionE
 	nop(ie, com)
 
 	
-    com.Serivce = inst.getSerivce(ie)
+    com.DaoProviderList = inst.getDaoProviderList(ie)
+    com.DaoSelector = inst.getDaoSelector(ie)
 
 
     return nil
 }
 
 
-func (inst*pa89018078d_agent_UserDaoAgent) getSerivce(ie application.InjectionExt)p24287f458.DaoSetService{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetService").(p24287f458.DaoSetService)
-}
-
-
-
-// type p8b617a3f2.RbacDaoSetLoader in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/core
-//
-// id:com-8b617a3f2c4381ff-core-RbacDaoSetLoader
-// class:
-// alias:alias-24287f4589fe5add27fb48a88d706565-DaoSetLoader
-// scope:singleton
-//
-type p8b617a3f2c_core_RbacDaoSetLoader struct {
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetLoader) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8b617a3f2c4381ff-core-RbacDaoSetLoader"
-	r.Classes = ""
-	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-DaoSetLoader"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetLoader) new() any {
-    return &p8b617a3f2.RbacDaoSetLoader{}
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetLoader) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8b617a3f2.RbacDaoSetLoader)
-	nop(ie, com)
-
-	
-    com.DSRegList = inst.getDSRegList(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8b617a3f2c_core_RbacDaoSetLoader) getDSRegList(ie application.InjectionExt)[]p24287f458.DaoSetRegistry{
-    dst := make([]p24287f458.DaoSetRegistry, 0)
-    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-DaoSetRegistry")
+func (inst*pa89018078d_agent_UserDaoAgent) getDaoProviderList(ie application.InjectionExt)[]p24287f458.UserDAO{
+    dst := make([]p24287f458.UserDAO, 0)
+    src := ie.ListComponents(".class-24287f4589fe5add27fb48a88d706565-UserDAO")
     for _, item1 := range src {
-        item2 := item1.(p24287f458.DaoSetRegistry)
+        item2 := item1.(p24287f458.UserDAO)
         dst = append(dst, item2)
     }
     return dst
 }
 
 
-
-// type p8b617a3f2.RbacDaoSetServiceImpl in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/core
-//
-// id:com-8b617a3f2c4381ff-core-RbacDaoSetServiceImpl
-// class:
-// alias:alias-24287f4589fe5add27fb48a88d706565-DaoSetService
-// scope:singleton
-//
-type p8b617a3f2c_core_RbacDaoSetServiceImpl struct {
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8b617a3f2c4381ff-core-RbacDaoSetServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-24287f4589fe5add27fb48a88d706565-DaoSetService"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetServiceImpl) new() any {
-    return &p8b617a3f2.RbacDaoSetServiceImpl{}
-}
-
-func (inst* p8b617a3f2c_core_RbacDaoSetServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8b617a3f2.RbacDaoSetServiceImpl)
-	nop(ie, com)
-
-	
-    com.Loader = inst.getLoader(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8b617a3f2c_core_RbacDaoSetServiceImpl) getLoader(ie application.InjectionExt)p24287f458.DaoSetLoader{
-    return ie.GetComponent("#alias-24287f4589fe5add27fb48a88d706565-DaoSetLoader").(p24287f458.DaoSetLoader)
+func (inst*pa89018078d_agent_UserDaoAgent) getDaoSelector(ie application.InjectionExt)string{
+    return ie.GetString("${daoset.rbac.selector}")
 }
 
 
@@ -369,8 +345,8 @@ func (inst*p8b617a3f2c_core_RbacDaoSetServiceImpl) getLoader(ie application.Inje
 // type p9abb4d655.MemoryAuthenticationDAO in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryAuthenticationDAO
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IAuthenticationDAO
+// class:class-24287f4589fe5add27fb48a88d706565-AuthenticationDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemoryAuthenticationDAO struct {
@@ -379,8 +355,8 @@ type p9abb4d6558_mem_MemoryAuthenticationDAO struct {
 func (inst* p9abb4d6558_mem_MemoryAuthenticationDAO) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryAuthenticationDAO"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IAuthenticationDAO"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-AuthenticationDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -397,15 +373,9 @@ func (inst* p9abb4d6558_mem_MemoryAuthenticationDAO) inject(injext application.I
 	nop(ie, com)
 
 	
-    com.Engine = inst.getEngine(ie)
 
 
     return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryAuthenticationDAO) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
 }
 
 
@@ -413,8 +383,8 @@ func (inst*p9abb4d6558_mem_MemoryAuthenticationDAO) getEngine(ie application.Inj
 // type p9abb4d655.MemoryPermissionDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryPermissionDao
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IPermissionDAO
+// class:class-24287f4589fe5add27fb48a88d706565-PermissionDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemoryPermissionDao struct {
@@ -423,8 +393,8 @@ type p9abb4d6558_mem_MemoryPermissionDao struct {
 func (inst* p9abb4d6558_mem_MemoryPermissionDao) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryPermissionDao"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IPermissionDAO"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-PermissionDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -441,15 +411,9 @@ func (inst* p9abb4d6558_mem_MemoryPermissionDao) inject(injext application.Injec
 	nop(ie, com)
 
 	
-    com.Engine = inst.getEngine(ie)
 
 
     return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryPermissionDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
 }
 
 
@@ -457,8 +421,8 @@ func (inst*p9abb4d6558_mem_MemoryPermissionDao) getEngine(ie application.Injecti
 // type p9abb4d655.MemoryRoleDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryRoleDao
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IRoleDAO
+// class:class-24287f4589fe5add27fb48a88d706565-RoleDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemoryRoleDao struct {
@@ -467,8 +431,8 @@ type p9abb4d6558_mem_MemoryRoleDao struct {
 func (inst* p9abb4d6558_mem_MemoryRoleDao) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryRoleDao"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IRoleDAO"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-RoleDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -485,15 +449,9 @@ func (inst* p9abb4d6558_mem_MemoryRoleDao) inject(injext application.InjectionEx
 	nop(ie, com)
 
 	
-    com.Engine = inst.getEngine(ie)
 
 
     return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryRoleDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
 }
 
 
@@ -501,8 +459,8 @@ func (inst*p9abb4d6558_mem_MemoryRoleDao) getEngine(ie application.InjectionExt)
 // type p9abb4d655.MemorySessionDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemorySessionDao
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ISessionDAO
+// class:class-24287f4589fe5add27fb48a88d706565-SessionDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemorySessionDao struct {
@@ -511,8 +469,8 @@ type p9abb4d6558_mem_MemorySessionDao struct {
 func (inst* p9abb4d6558_mem_MemorySessionDao) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemorySessionDao"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ISessionDAO"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-SessionDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -529,15 +487,9 @@ func (inst* p9abb4d6558_mem_MemorySessionDao) inject(injext application.Injectio
 	nop(ie, com)
 
 	
-    com.Engine = inst.getEngine(ie)
 
 
     return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemorySessionDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
 }
 
 
@@ -545,8 +497,8 @@ func (inst*p9abb4d6558_mem_MemorySessionDao) getEngine(ie application.InjectionE
 // type p9abb4d655.MemoryTableDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryTableDao
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO
+// class:class-24287f4589fe5add27fb48a88d706565-TableDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemoryTableDao struct {
@@ -555,8 +507,8 @@ type p9abb4d6558_mem_MemoryTableDao struct {
 func (inst* p9abb4d6558_mem_MemoryTableDao) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryTableDao"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-TableDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -573,15 +525,9 @@ func (inst* p9abb4d6558_mem_MemoryTableDao) inject(injext application.InjectionE
 	nop(ie, com)
 
 	
-    com.Engine = inst.getEngine(ie)
 
 
     return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryTableDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
 }
 
 
@@ -589,8 +535,8 @@ func (inst*p9abb4d6558_mem_MemoryTableDao) getEngine(ie application.InjectionExt
 // type p9abb4d655.MemoryUserDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
 //
 // id:com-9abb4d6558cb6ecb-mem-MemoryUserDao
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IUserDao
+// class:class-24287f4589fe5add27fb48a88d706565-UserDAO
+// alias:
 // scope:singleton
 //
 type p9abb4d6558_mem_MemoryUserDao struct {
@@ -599,8 +545,8 @@ type p9abb4d6558_mem_MemoryUserDao struct {
 func (inst* p9abb4d6558_mem_MemoryUserDao) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryUserDao"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IUserDao"
+	r.Classes = "class-24287f4589fe5add27fb48a88d706565-UserDAO"
+	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
 	r.InjectFunc = inst.inject
@@ -614,412 +560,6 @@ func (inst* p9abb4d6558_mem_MemoryUserDao) new() any {
 func (inst* p9abb4d6558_mem_MemoryUserDao) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
 	com := instance.(*p9abb4d655.MemoryUserDao)
-	nop(ie, com)
-
-	
-    com.Engine = inst.getEngine(ie)
-
-
-    return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryUserDao) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
-}
-
-
-
-// type p9abb4d655.MemoryEngineFacade in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
-//
-// id:com-9abb4d6558cb6ecb-mem-MemoryEngineFacade
-// class:
-// alias:alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine
-// scope:singleton
-//
-type p9abb4d6558_mem_MemoryEngineFacade struct {
-}
-
-func (inst* p9abb4d6558_mem_MemoryEngineFacade) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryEngineFacade"
-	r.Classes = ""
-	r.Aliases = "alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p9abb4d6558_mem_MemoryEngineFacade) new() any {
-    return &p9abb4d655.MemoryEngineFacade{}
-}
-
-func (inst* p9abb4d6558_mem_MemoryEngineFacade) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p9abb4d655.MemoryEngineFacade)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p9abb4d655.MemoryDaoSetProvider in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/mem
-//
-// id:com-9abb4d6558cb6ecb-mem-MemoryDaoSetProvider
-// class:class-24287f4589fe5add27fb48a88d706565-DaoSetRegistry
-// alias:
-// scope:singleton
-//
-type p9abb4d6558_mem_MemoryDaoSetProvider struct {
-}
-
-func (inst* p9abb4d6558_mem_MemoryDaoSetProvider) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-9abb4d6558cb6ecb-mem-MemoryDaoSetProvider"
-	r.Classes = "class-24287f4589fe5add27fb48a88d706565-DaoSetRegistry"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p9abb4d6558_mem_MemoryDaoSetProvider) new() any {
-    return &p9abb4d655.MemoryDaoSetProvider{}
-}
-
-func (inst* p9abb4d6558_mem_MemoryDaoSetProvider) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p9abb4d655.MemoryDaoSetProvider)
-	nop(ie, com)
-
-	
-    com.ConfigEnabled = inst.getConfigEnabled(ie)
-    com.ConfigPriority = inst.getConfigPriority(ie)
-    com.AuthenDao = inst.getAuthenDao(ie)
-    com.PermDao = inst.getPermDao(ie)
-    com.RoleDao = inst.getRoleDao(ie)
-    com.SessionDao = inst.getSessionDao(ie)
-    com.TableDao = inst.getTableDao(ie)
-    com.UserDao = inst.getUserDao(ie)
-    com.Engine = inst.getEngine(ie)
-
-
-    return nil
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getConfigEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${rbac-dao-set.ram.enabled}")
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getConfigPriority(ie application.InjectionExt)int{
-    return ie.GetInt("${rbac-dao-set.ram.priority}")
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getAuthenDao(ie application.InjectionExt)p9abb4d655.IAuthenticationDAO{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IAuthenticationDAO").(p9abb4d655.IAuthenticationDAO)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getPermDao(ie application.InjectionExt)p9abb4d655.IPermissionDAO{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IPermissionDAO").(p9abb4d655.IPermissionDAO)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getRoleDao(ie application.InjectionExt)p9abb4d655.IRoleDAO{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IRoleDAO").(p9abb4d655.IRoleDAO)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getSessionDao(ie application.InjectionExt)p9abb4d655.ISessionDAO{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ISessionDAO").(p9abb4d655.ISessionDAO)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getTableDao(ie application.InjectionExt)p9abb4d655.ITableDAO{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-ITableDAO").(p9abb4d655.ITableDAO)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getUserDao(ie application.InjectionExt)p9abb4d655.IUserDao{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IUserDao").(p9abb4d655.IUserDao)
-}
-
-
-func (inst*p9abb4d6558_mem_MemoryDaoSetProvider) getEngine(ie application.InjectionExt)p9abb4d655.IMemoryEngine{
-    return ie.GetComponent("#alias-9abb4d6558cb6ecb9c8f6bb5a2dd0179-IMemoryEngine").(p9abb4d655.IMemoryEngine)
-}
-
-
-
-// type p6051122a5.UnsupportedDaoSetProvider in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedDaoSetProvider
-// class:class-24287f4589fe5add27fb48a88d706565-DaoSetRegistry
-// alias:
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedDaoSetProvider struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedDaoSetProvider) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedDaoSetProvider"
-	r.Classes = "class-24287f4589fe5add27fb48a88d706565-DaoSetRegistry"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedDaoSetProvider) new() any {
-    return &p6051122a5.UnsupportedDaoSetProvider{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedDaoSetProvider) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedDaoSetProvider)
-	nop(ie, com)
-
-	
-    com.ConfigEnabled = inst.getConfigEnabled(ie)
-    com.ConfigPriority = inst.getConfigPriority(ie)
-    com.AuthenDao = inst.getAuthenDao(ie)
-    com.PermDao = inst.getPermDao(ie)
-    com.RoleDao = inst.getRoleDao(ie)
-    com.SessionDao = inst.getSessionDao(ie)
-    com.UserDao = inst.getUserDao(ie)
-
-
-    return nil
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getConfigEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${rbac-dao-set.unsupported.enabled}")
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getConfigPriority(ie application.InjectionExt)int{
-    return ie.GetInt("${rbac-dao-set.unsupported.priority}")
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getAuthenDao(ie application.InjectionExt)p6051122a5.IAuthenticationDAO{
-    return ie.GetComponent("#alias-6051122a5990b446e1c6fd50b9ff77ac-IAuthenticationDAO").(p6051122a5.IAuthenticationDAO)
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getPermDao(ie application.InjectionExt)p6051122a5.IPermissionDAO{
-    return ie.GetComponent("#alias-6051122a5990b446e1c6fd50b9ff77ac-IPermissionDAO").(p6051122a5.IPermissionDAO)
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getRoleDao(ie application.InjectionExt)p6051122a5.IRoleDAO{
-    return ie.GetComponent("#alias-6051122a5990b446e1c6fd50b9ff77ac-IRoleDAO").(p6051122a5.IRoleDAO)
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getSessionDao(ie application.InjectionExt)p6051122a5.ISessionDAO{
-    return ie.GetComponent("#alias-6051122a5990b446e1c6fd50b9ff77ac-ISessionDAO").(p6051122a5.ISessionDAO)
-}
-
-
-func (inst*p6051122a59_unsupported_UnsupportedDaoSetProvider) getUserDao(ie application.InjectionExt)p6051122a5.IUserDao{
-    return ie.GetComponent("#alias-6051122a5990b446e1c6fd50b9ff77ac-IUserDao").(p6051122a5.IUserDao)
-}
-
-
-
-// type p6051122a5.UnsupportedAuthenticationDAO in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedAuthenticationDAO
-// class:
-// alias:alias-6051122a5990b446e1c6fd50b9ff77ac-IAuthenticationDAO
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedAuthenticationDAO struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedAuthenticationDAO) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedAuthenticationDAO"
-	r.Classes = ""
-	r.Aliases = "alias-6051122a5990b446e1c6fd50b9ff77ac-IAuthenticationDAO"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedAuthenticationDAO) new() any {
-    return &p6051122a5.UnsupportedAuthenticationDAO{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedAuthenticationDAO) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedAuthenticationDAO)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p6051122a5.UnsupportedPermissionDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedPermissionDao
-// class:
-// alias:alias-6051122a5990b446e1c6fd50b9ff77ac-IPermissionDAO
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedPermissionDao struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedPermissionDao) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedPermissionDao"
-	r.Classes = ""
-	r.Aliases = "alias-6051122a5990b446e1c6fd50b9ff77ac-IPermissionDAO"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedPermissionDao) new() any {
-    return &p6051122a5.UnsupportedPermissionDao{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedPermissionDao) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedPermissionDao)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p6051122a5.UnsupportedRoleDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedRoleDao
-// class:
-// alias:alias-6051122a5990b446e1c6fd50b9ff77ac-IRoleDAO
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedRoleDao struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedRoleDao) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedRoleDao"
-	r.Classes = ""
-	r.Aliases = "alias-6051122a5990b446e1c6fd50b9ff77ac-IRoleDAO"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedRoleDao) new() any {
-    return &p6051122a5.UnsupportedRoleDao{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedRoleDao) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedRoleDao)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p6051122a5.UnsupportedSessionDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedSessionDao
-// class:
-// alias:alias-6051122a5990b446e1c6fd50b9ff77ac-ISessionDAO
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedSessionDao struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedSessionDao) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedSessionDao"
-	r.Classes = ""
-	r.Aliases = "alias-6051122a5990b446e1c6fd50b9ff77ac-ISessionDAO"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedSessionDao) new() any {
-    return &p6051122a5.UnsupportedSessionDao{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedSessionDao) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedSessionDao)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p6051122a5.UnsupportedUserDao in package:github.com/starter-go/rbac/src/main/golang/librbac/idaoset/unsupported
-//
-// id:com-6051122a5990b446-unsupported-UnsupportedUserDao
-// class:
-// alias:alias-6051122a5990b446e1c6fd50b9ff77ac-IUserDao
-// scope:singleton
-//
-type p6051122a59_unsupported_UnsupportedUserDao struct {
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedUserDao) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-6051122a5990b446-unsupported-UnsupportedUserDao"
-	r.Classes = ""
-	r.Aliases = "alias-6051122a5990b446e1c6fd50b9ff77ac-IUserDao"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedUserDao) new() any {
-    return &p6051122a5.UnsupportedUserDao{}
-}
-
-func (inst* p6051122a59_unsupported_UnsupportedUserDao) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p6051122a5.UnsupportedUserDao)
 	nop(ie, com)
 
 	

@@ -1,8 +1,15 @@
 package roles
 
-import "gorm.io/gorm"
+import (
+	"github.com/starter-go/v0/libdao"
+	"gorm.io/gorm"
+)
 
 type DAO interface {
+
+	// extends
+
+	libdao.DAO
 
 	// db
 

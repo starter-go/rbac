@@ -30,6 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
+    inst.register(&p52f05ffa69_iauth_PasswordAuthenticator{})
     inst.register(&p6a368d1706_iservices_CheckerServiceImpl{})
     inst.register(&p6a368d1706_iservices_TableServiceImpl{})
     inst.register(&p6a368d1706_iservices_UserServiceImpl{})
